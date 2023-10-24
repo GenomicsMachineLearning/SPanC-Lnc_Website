@@ -1,0 +1,56 @@
+<nb-card style="padding: 0 55px !important;">
+  <nb-card-header>Skin cancer multi-omics data</nb-card-header>
+  <nb-card-body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-xl-4 col-lg-4 col-md-12 col-sm-12 p-2">
+          <nb-card style="min-height: 500px !important">
+            <nb-card-header>Choose a gene:</nb-card-header>
+            <nb-card-body>
+              <div class="col-12">
+                <p-autoComplete   class="geneAutoSelect" [dropdown]="true" [forceSelection]="true" (onFocus)="onSelect($event)" [suggestions]="filteredGenes" field="id"
+                (completeMethod)="filterGeneAtlas($event)"></p-autoComplete>
+              </div>
+
+              <nb-list class='pt-4'>
+                <nb-list-item *ngFor="let genes of sampleGenes">
+                  <nb-card accent="info" class="geneSampleImages">
+                    <nb-card-header>{{genes.name}}</nb-card-header>
+                    <nb-card-body style="overflow: hidden;">
+                      <img class="geneSampleImages" [src]="genes.image">
+                    </nb-card-body>
+                  </nb-card>
+                </nb-list-item>
+              </nb-list>
+            </nb-card-body>
+          </nb-card>
+        </div>
+        <ng-container *ngIf="showGenes;else nofeaturefound"> 
+
+          <div class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
+            <div class="sampleSpecies" *ngIf="this.showGenes">
+              <ng-container *ngFor="let expGenes of sampleTissueImg">
+                <p-fieldset class="atlasImageList" [legend]="expGenes.name">
+                  <div class="container-fluid">
+                    <div class="col-12 text-center">
+                      <img class="sampleSpeciesImages" [src]="'data:image/png;base64,' + expGenes.plotImage">
+                    </div>
+                   
+                  </div>
+                </p-fieldset>
+              </ng-container>
+            </div>
+          </div>
+
+        </ng-container>
+        <ng-template class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" #nofeaturefound>
+          <div class="image-container" *ngIf="this.showNotFound && !this.showGenes">
+            <img style="width:50%;" src="assets/images/nofeaturefound.jpg" alt="nofeaturefound">
+            <div class="image-caption">Feature not found in sample</div>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

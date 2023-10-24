@@ -1,0 +1,183 @@
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap');
+
+
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/globals';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+}
+
+;
+
+
+.active{
+  background-color: #B39EB5 !important;
+  span{
+    color: #faf6fa ;
+  }
+}
+
+.ngxuserheader {
+  background-color: #B39EB5 !important;
+  height: 64px !important;
+  font-size: 20px !important;
+  padding: 0 !important;
+  color: #C1C5CB;
+
+  nav {
+    height: 64px !important;
+    // padding: 14px !important;
+  }
+}
+
+.ngxlogoheader {
+  height: 70px !important;
+  font-size: 20px !important;
+
+  nav {
+    height: 70px !important;
+    // padding: 14px !important;
+  }
+}
+
+// scroll bar style
+body::-webkit-scrollbar {
+  width: 12px;
+  height: 60px;
+  /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  // background: #B39EB5;        /* color of the tracking area */
+  background: #FFFFFF;
+  /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #B39EB5 !important;
+  border: 3px solid #B39EB5 !important;
+  /* creates padding around scroll thumb */
+}
+.footer{
+  nav{
+    padding-top: 0px !important;
+    padding-bottom:0px !important ;
+  }
+}
+.sidebar-toggle{
+  nb-icon{
+    color: #FFFFFF !important;
+  }
+  
+}
+.header-container{
+  nb-icon{
+    color: #FFFFFF ;
+  }
+}
+nb-sidebar{
+  .main-container {
+    background-color: #dde2e9 !important;
+    .scrollable{
+      padding-top: 1px !important;
+      nb-menu{
+        .menu-items{
+          li{
+            a{
+              // border-bottom: 1px solid #B39EB5 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+nb-layout-column{
+  padding: 15px !important;
+}
+
+// @import 'ag-grid-community/styles/ag-grid.css';
+// @import 'ag-grid-community/styles/ag-theme-alpine.css';
+// @import "~bootstrap-icons/font/bootstrap-icons.css";
+.Useractive{
+  color: #7d1486 !important;
+}
+
+:host ::ng-deep .p-dialog .product-image {
+  width: 150px;
+  margin: 0 auto 2rem auto;
+  display: block;
+}
+.p-datatable-table .ng-star-inserted{
+  width: 100% !important;
+}
+
+
+// @import '../../../../node_modules/primeicons/primeicons.css';
+@import '../../../../node_modules/primeicons/primeicons.css';
+@import '../../../../node_modules/primeng/resources/primeng.min.css';
+@import '../../../../node_modules/primeng/resources/themes/lara-light-teal/theme.css';
+// @import '../../../../node_modules/primeflex/primeflex.css';
+@import '../../../../node_modules/quill/dist/quill.snow.css';
+.active{
+  color: #7d1486 !important;
+}
+
+
+.atlasImageList {
+  fieldset{
+    margin-bottom: 25px !important;
+    div{
+      padding: 0px !important;
+    } 
+  }
+  // max-height: 400px !important;
+  // margin-top: 80px !important;
+}
+.geneAutoSelect{
+  .p-autocomplete{
+    width:100% !important;
+  }
+}
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.image-caption {
+  margin-top: 10px; /* Adjust this value for desired spacing */
+  font-weight: 600;
+}

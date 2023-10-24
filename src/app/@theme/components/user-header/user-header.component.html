@@ -1,0 +1,17 @@
+<div id="topbar" class="w-full h-16 flex items-center dark:bg-dark-topbar">
+    <div class="container mx-auto">
+        <nb-icon class="userMenutoggle" icon="menu-2-outline" (click)="openNav()"></nb-icon>
+        <ul class="topbar-menu flex">
+            <li class="sidebar-item mr-8" *ngFor="let menu of this.UserMenu"><a [routerLinkActive]="'Useractive'"
+                    routerLink="{{menu.link}}" style="cursor: pointer;"
+                    class="sidebar-link relative flex items-center py-3 text-gray-300 transition duration-100 active">
+                    <span class="text-md ml-3 mt-1 sidebar-menu-text">{{menu.title}}</span>
+                </a></li>
+        </ul>
+        <div id="mySidenav" class="sidenav">
+            <a class="closebtn" (click)="closeNav()">&times;</a>
+            <a *ngFor="let menu of this.UserMenu" [routerLinkActive]="'Useractive'" routerLink="{{menu.link}}"
+                style="cursor: pointer;">{{menu.title}}</a>
+        </div>
+    </div>
+</div>
