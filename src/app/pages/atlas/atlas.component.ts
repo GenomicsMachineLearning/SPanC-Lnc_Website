@@ -12,7 +12,8 @@ export class AtlasComponent implements OnInit {
   public filteredGenes:any = [];
   public filteredGenesOrg:any = [];
   // public sampleGenes:any = [{image:"assets/images/geneExporer/hnopc.jpeg",name:"Head and Neck OPSCC"}];
-  public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'}, {"image":"assets/images/geneExporer/KidneyCancer.png","name":'Kidney cancer'}, {"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'}]
+  public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'},{"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'}]
+  // public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'}, {"image":"assets/images/geneExporer/KidneyCancer.png","name":'Kidney cancer'}, {"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'}]
   public sampleTissueImg:any = [];
   public showSpinner:boolean = false;
   public showGenes:boolean = false;
