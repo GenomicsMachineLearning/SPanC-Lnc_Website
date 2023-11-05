@@ -5,5 +5,5 @@
  */
 export const environment = {
   production: true,
-  apiBaseURL:'http://prakrithi.pythonanywhere.com'
+  apiBaseURL:'https://prakrithi.pythonanywhere.com'
 };
