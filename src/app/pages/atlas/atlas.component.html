@@ -1,11 +1,11 @@
 <nb-card style="padding: 0 55px !important;">
-  <nb-card-header>Skin cancer multi-omics data</nb-card-header>
+  <nb-card-header>lncRNA Expression Visualization on Visium data</nb-card-header>
   <nb-card-body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-xl-4 col-lg-4 col-md-12 col-sm-12 p-2">
           <nb-card style="min-height: 500px !important">
-            <nb-card-header>Choose a gene:</nb-card-header>
+            <nb-card-header>Choose a lncRNA (cuTAR ID) :</nb-card-header>
             <nb-card-body>
               <div class="col-12">
                 <p-autoComplete   class="geneAutoSelect" [dropdown]="true" [forceSelection]="true" (onFocus)="onSelect($event)" [suggestions]="filteredGenes" field="id"

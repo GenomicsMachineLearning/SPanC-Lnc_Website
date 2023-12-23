@@ -23,7 +23,7 @@ export class UserHeaderComponent implements OnInit {
           home: false,
       },
       {
-          title: 'Gene Explorer',
+          title: 'Visualization',
           icon: 'home-outline',
           link: '/pages/geneexplorer',
           home: false,
