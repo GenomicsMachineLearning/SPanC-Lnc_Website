@@ -10,7 +10,9 @@ export class AtlasComponent implements OnInit {
 
   public geneAtlas:any = [{name:'IGKC'},{name:'FLG'},{name:'LOR'},{name:'LCE1C'},{name:'P13'},{name:'KRT1'},{name:'LTF'},{name:'MMP'}]
   public filteredGenes:any = [];
-  public filteredGenesOrg:any = [];
+  // public filteredGenesOrg:any = [];
+  public filteredGenesOrg:any = [{CUTAR_ID:"cuTAR100897"},{CUTAR_ID:"cuTAR213507"},{CUTAR_ID: "cuTAR234975"}]
+
   // public sampleGenes:any = [{image:"assets/images/geneExporer/hnopc.jpeg",name:"Head and Neck OPSCC"}];
   public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'},{"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'},{"image":"assets/images/geneExporer/KidneyCancer.png","name":'Kidney Cancer'}]
   // public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'}, {"image":"assets/images/geneExporer/KidneyCancer.png","name":'Kidney cancer'}, {"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'}]
@@ -25,10 +27,11 @@ export class AtlasComponent implements OnInit {
 
   filteredCountries: any[];
   ngOnInit(): void {
-     this.getGenes();
+    //  this.getGenes();
   }
 
   filterGeneAtlas(event: any) {
+    console.log("filterted genes", event)
     let filtered: any[] = [];
     let query = event.query;
     // if(query) {
@@ -36,7 +39,7 @@ export class AtlasComponent implements OnInit {
         this.filteredGenesOrg =res.list;
         for (let i = 0; i < (this.filteredGenesOrg as any[]).length; i++) {
           let geneAtlas = (this.filteredGenesOrg as any[])[i];
-          if (geneAtlas.id.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          if (geneAtlas?.CUTAR_ID?.toLowerCase().indexOf(query?.toLowerCase()) == 0) {
               filtered.push(geneAtlas);
           }
       }
@@ -58,6 +61,7 @@ getGenes() {
 }
 
 onSelect(event) {
+  console.log('Onselect1234', event);
   var data:any = {};
   data.geneId = event.target.value;
   this.showSpinner = true;

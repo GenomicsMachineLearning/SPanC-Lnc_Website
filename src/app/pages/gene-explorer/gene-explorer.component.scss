@@ -13,3 +13,12 @@
 .toolparBatton{
     height: 31px !important;
 }
+#primengTable td {
+    text-overflow: ellipsis;
+    max-width: 250px;
+ }
+
+p-table { 
+    word-break: normal;
+    overflow-wrap: anywhere;
+      }

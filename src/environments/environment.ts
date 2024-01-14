@@ -10,6 +10,6 @@
 
 export const environment = {
   production: false,
-  // apiBaseURL:' http://127.0.0.1:8000'
-  apiBaseURL:'https://prakrithi.pythonanywhere.com'
+  apiBaseURL:' http://127.0.0.1:8000'
+  // apiBaseURL:'https://prakrithi.pythonanywhere.com'
 };

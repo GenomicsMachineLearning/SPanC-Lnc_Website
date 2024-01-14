@@ -187,7 +187,7 @@ export class GeneExplorerComponent implements OnInit {
             queryParams.ordering = data.sortField
         }
         else {
-            queryParams.ordering = 'geneid'
+            queryParams.ordering = 'GENE_ID'
         }
         if(data.sortOrder === -1) {
             queryParams.ordering =    '-' +  queryParams.ordering
