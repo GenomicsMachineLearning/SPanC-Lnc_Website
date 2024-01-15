@@ -8,7 +8,7 @@
             <nb-card-header>Choose a lncRNA (cuTAR ID) :</nb-card-header>
             <nb-card-body>
               <div class="col-12">
-                <p-autoComplete   class="geneAutoSelect" [dropdown]="true" [forceSelection]="true" (onFocus)="onSelect($event)" [suggestions]="filteredGenes" field="CUTAR_ID" placeholder="Enter Cutar Id To Search"
+                <p-autoComplete   class="geneAutoSelect" [dropdown]="true" [forceSelection]="true" (onFocus)="onSelect($event)" [suggestions]="filteredGenes" field="CUTAR_ID" placeholder="Enter cuTAR ID To Search"
                 (completeMethod)="filterGeneAtlas($event)"></p-autoComplete>
               </div>
 
