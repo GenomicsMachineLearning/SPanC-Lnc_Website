@@ -28,6 +28,19 @@ export class UserHeaderComponent implements OnInit {
           link: '/pages/geneexplorer',
           home: false,
       },
+      {
+        title: 'Spatial Long Read',
+        icon: 'home-outline',
+        link: '/pages/spatialongread',
+        home: false,
+      },
+      {
+        title: 'Single cell RNA-Seq',
+        icon: 'home-outline',
+        link: '/pages/singlecell',
+        home: false,
+    },
+
       
 
     ]

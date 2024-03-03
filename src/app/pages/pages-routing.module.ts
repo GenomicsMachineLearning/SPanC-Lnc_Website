@@ -5,6 +5,8 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 import { AboutComponent } from './about/about.component';
 import { GeneExplorerComponent } from './gene-explorer/gene-explorer.component';
 import { AtlasComponent } from './atlas/atlas.component';
+import { SpatialongreadComponent } from '../spatialongread/spatialongread.component';
+import { SinglecellComponent } from '../singlecell/singlecell.component';
 
 
 const routes: Routes = [{
@@ -23,6 +25,14 @@ const routes: Routes = [{
     {
       path: 'geneexplorer',
       component: AtlasComponent,
+    },
+    {
+      path: 'spatialongread',
+      component: SpatialongreadComponent,
+    },
+    {
+      path: 'singlecell',
+      component: SinglecellComponent,
     },
     {
       path: '',
