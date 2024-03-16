@@ -8,10 +8,16 @@
             <nb-card-header>Choose a lncRNA (cuTAR ID) :</nb-card-header>
             <nb-card-body>
               <div class="col-12">
-                <p-autoComplete   class="geneAutoSelect" [dropdown]="true" [forceSelection]="true" (onFocus)="onSelect($event)" [suggestions]="filteredGenes" field="CUTAR_ID" placeholder="Enter cuTAR ID To Search"
-                (completeMethod)="filterGeneAtlas($event)"></p-autoComplete>
+                <div class="input-group mb-3">
+                  <input type="text" [formControl]="searchControl" class="form-control" placeholder="Enter cuTAR ID To Search" aria-label="Enter cuTAR ID To Search" aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2">
+                      <nb-icon icon="info-outline" pTooltip="case sensitive"></nb-icon>
+                    </span>
+                  </div>
+                </div>
               </div>
-
+               <p style="font-style: italic;font-size: 12px;padding-left: 20px;">Ex: cuTAR213507, cuTAR204975, cuTAR17878</p>
               <nb-list class='pt-4'>
                 <nb-list-item *ngFor="let genes of sampleGenes">
                   <nb-card accent="info" class="geneSampleImages">

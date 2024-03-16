@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneexplorerService } from '../../../service/geneexplorer.service';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-atlas',
@@ -20,10 +22,31 @@ export class AtlasComponent implements OnInit {
   public showSpinner:boolean = false;
   public showGenes:boolean = false;
   public showNotFound:boolean = true
-
+  searchControl = new FormControl();
   // public ExampleGenes:any = [{image:"assets/images/geneExporer/scc_visium_exmp.png",name:"SCC:Visium"}, 
   // {image:"assets/images/geneExporer/bcc_visium_exmp.png",name:"BCC:Visium"},{image:"assets/images/geneExporer/mel_vis_exmp.png",name:"Melanoma:Visium"}]
-  constructor(private geneService: GeneexplorerService ) {}
+  constructor(private geneService: GeneexplorerService ) {
+    this.searchControl.valueChanges
+      .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
+      .subscribe(newValue => {
+        // This code will execute after 300ms of user input pause
+        if(newValue) {
+          var data:any = {};
+        data.geneId = newValue?.trim();
+          this.showSpinner = true;
+          this.geneService.getsamplesImg(data).subscribe((res:any) => {
+            this.sampleTissueImg =  res.data
+            this.showSpinner = false;
+            this.showGenes = true;
+            this.showNotFound = false
+       },(err) => {
+        this.showNotFound = true;
+        this.showGenes = false;
+        this.showSpinner = false;
+       })
+        }
+      });
+  }
 
   filteredCountries: any[];
   ngOnInit(): void {
@@ -31,7 +54,6 @@ export class AtlasComponent implements OnInit {
   }
 
   filterGeneAtlas(event: any) {
-    console.log("filterted genes", event)
     let filtered: any[] = [];
     let query = event.query;
     // if(query) {
@@ -61,7 +83,6 @@ getGenes() {
 }
 
 onSelect(event) {
-  console.log('Onselect1234', event);
   var data:any = {};
   data.geneId = event.target.value;
   this.showSpinner = true;

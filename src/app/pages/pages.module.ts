@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbButtonGroupModule, NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbMenuModule, NbSpinnerModule } from '@nebular/theme';
+import { NbButtonGroupModule, NbButtonModule, NbCardModule, NbFormFieldModule, NbIconModule, NbLayoutModule, NbListModule, NbMenuModule, NbSpinnerModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
@@ -79,6 +79,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProductService } from '../../service/geneExplorService';
 // import { ProductService } from 'src/service/productservice';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -98,12 +99,13 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     NbCardModule,
     NbButtonModule,
     AutoCompleteModule,
+    ReactiveFormsModule,
     // NbIconModule,
     NbIconModule,
     NbSpinnerModule,
 
     NbButtonGroupModule,
-
+    NbFormFieldModule,
 
 
 
