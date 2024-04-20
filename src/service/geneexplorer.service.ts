@@ -21,4 +21,10 @@ export class GeneexplorerService {
   getsamplesImg(body:any) {
     return this.api.post(this.glService.getGeneImg,body)
   }
+  getsamplesImgSlr(body:any) {
+    return this.api.post(this.glService.getGeneImgSlr,body)
+  }
+  getsamplesImgScr(body:any) {
+    return this.api.post(this.glService.getGeneImgScr,body)
+  }
 }

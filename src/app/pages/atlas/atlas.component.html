@@ -50,7 +50,7 @@
 
         </ng-container>
         <ng-template class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" #nofeaturefound>
-          <div class="image-container" *ngIf="this.showNotFound && !this.showGenes">
+          <div class="image-container" *ngIf="this.showNotFound && !this.showGenes" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
             <img style="width:50%;" src="assets/images/nofeaturefound.jpg" alt="nofeaturefound">
             <div class="image-caption">Feature not found in sample</div>
           </div>

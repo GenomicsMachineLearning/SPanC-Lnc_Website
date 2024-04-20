@@ -80,6 +80,8 @@ import { ProductService } from '../../service/geneExplorService';
 // import { ProductService } from 'src/service/productservice';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SinglecellComponent } from '../singlecell/singlecell.component';
+import { SpatialongreadComponent } from '../spatialongread/spatialongread.component';
 
 
 
@@ -183,6 +185,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     GeneExplorerComponent,
     AtlasComponent,
+    SpatialongreadComponent, 
+    SinglecellComponent
     
     // LogoHeaderComponent
   ],

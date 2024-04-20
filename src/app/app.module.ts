@@ -26,13 +26,9 @@ import {
 import { LoginComponent } from './login/login.component';
 import { AuthGuardGuard } from '../auth/auth-guard.guard';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SpatialongreadComponent } from './spatialongread/spatialongread.component';
-import { SinglecellComponent } from './singlecell/singlecell.component';
-
-
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, SpatialongreadComponent, SinglecellComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     NbLayoutModule,

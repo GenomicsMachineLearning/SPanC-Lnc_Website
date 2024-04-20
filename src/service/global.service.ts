@@ -15,10 +15,6 @@ export class GlobalService {
   public getGeneExplorer:string='/genes_list' 
   public getGeneList:string='/genesid' 
   public getGeneImg:string='/genes' 
-
-
-
-
-
-
+  public getGeneImgSlr:string = '/genesSlr'
+  public getGeneImgScr:string = '/genesScr'
 }

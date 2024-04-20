@@ -1,6 +1,62 @@
-<nb-card class="shadow rounded" style="min-height: 84vh !important;">
-    <nb-card-header>LncRNA Explorer</nb-card-header>
-    <nb-card-body class="shadow rounded pt-1" style="text-align: center;">
-<img src="assets/images/under_construction.jpg" alt="under_construction" style="width: 500px;">
-</nb-card-body>
-</nb-card>
+<nb-card style="padding: 0 55px !important;">
+    <nb-card-header>LncRNA Expression Visualization in Spatial Long Tead (Nanopore and PacBio) Data</nb-card-header>
+    <nb-card-body>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-xl-4 col-lg-4 col-md-12 col-sm-12 p-2">
+            <nb-card style="min-height: 500px !important">
+              <nb-card-header>Choose a lncRNA (cuTAR ID) :</nb-card-header>
+              <nb-card-body>
+                <div class="col-12">
+                  <div class="input-group mb-3">
+                    <input type="text" [formControl]="searchControl" class="form-control" placeholder="Enter cuTAR ID To Search" aria-label="Enter cuTAR ID To Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2">
+                        <nb-icon icon="info-outline" pTooltip="case sensitive"></nb-icon>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                 <p style="font-style: italic;font-size: 12px;padding-left: 20px;">Ex: cuTAR17878, cuTAR86784, cuTAR10310</p>
+                <nb-list class='pt-4'>
+                  <nb-list-item *ngFor="let genes of sampleGenes">
+                    <nb-card accent="info" class="geneSampleImages">
+                      <nb-card-header>{{genes.name}}</nb-card-header>
+                      <nb-card-body style="overflow: hidden;">
+                        <img class="geneSampleImages" [src]="genes.image">
+                      </nb-card-body>
+                    </nb-card>
+                  </nb-list-item>
+                </nb-list>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <ng-container *ngIf="showGenes;else nofeaturefound"> 
+  
+            <div class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
+              <div class="sampleSpecies" *ngIf="this.showGenes">
+                <ng-container *ngFor="let expGenes of sampleTissueImg">
+                  <p-fieldset class="atlasImageList" [legend]="expGenes.name">
+                    <div class="container-fluid">
+                      <div class="col-12 text-center">
+                        <img class="sampleSpeciesImages" [src]="'data:image/png;base64,' + expGenes.plotImage">
+                      </div>
+                     
+                    </div>
+                  </p-fieldset>
+                </ng-container>
+              </div>
+            </div>
+  
+          </ng-container>
+          <ng-template class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2"  #nofeaturefound>
+            <div class="image-container" *ngIf="this.showNotFound && !this.showGenes" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
+              <img style="width:50%;" src="assets/images/nofeaturefound.jpg" alt="nofeaturefound">
+              <div class="image-caption">Feature not found in sample</div>
+            </div>
+          </ng-template>
+  
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
