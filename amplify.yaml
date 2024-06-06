@@ -3,6 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - npm ci --cache .npm --prefer-offline --force
         - nvm install 20
         - npm install --force
     build:
