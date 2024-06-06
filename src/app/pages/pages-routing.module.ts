@@ -17,7 +17,6 @@ const routes: Routes = [{
       path: 'about',
       component: AboutComponent,
     },
-
     {
       path: 'browse',
       component: GeneExplorerComponent,

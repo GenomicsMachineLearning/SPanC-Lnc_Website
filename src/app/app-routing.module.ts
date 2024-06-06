@@ -18,11 +18,6 @@ export const routes: Routes = [
       .then(m => m.PagesModule),
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module')
-      .then(m => m.AdminModule), canActivate: [AuthGuardGuard]
-  },
-  {
     path: 'login',component:LoginComponent,
   },
   {
