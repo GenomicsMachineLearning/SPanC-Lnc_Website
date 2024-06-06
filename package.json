@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@angular/animations": "^13.3.12",
-    "@angular/cdk": "12.1.0",
+    "@angular/cdk": "13.1.0",
     "@angular/common": "^13.3.12",
     "@angular/compiler": "^13.3.12",
     "@angular/core": "^13.3.12",
@@ -42,6 +42,7 @@
     "@angular/router": "^13.3.12",
     "@asymmetrik/ngx-leaflet": "3.0.1",
     "@ckeditor/ckeditor5-angular": "^4.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
     "@nebular/auth": "9.1.0-rc.8",
     "@nebular/eva-icons": "9.1.0-rc.8",
     "@nebular/security": "9.1.0-rc.8",
