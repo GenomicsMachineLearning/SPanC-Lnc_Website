@@ -23,7 +23,7 @@ export class AtlasComponent implements OnInit {
   public showGenes:boolean = false;
   public showNotFound:boolean = true
   searchControl = new FormControl();
-  // public ExampleGenes:any = [{image:"assets/images/geneExporer/scc_visium_exmp.png",name:"SCC:Visium"}, 
+  // public ExampleGenes:any = [{image:"assets/images/geneExporer/scc_visium_exmp.png",name:"SCC:Visium"},
   // {image:"assets/images/geneExporer/bcc_visium_exmp.png",name:"BCC:Visium"},{image:"assets/images/geneExporer/mel_vis_exmp.png",name:"Melanoma:Visium"}]
   constructor(private geneService: GeneexplorerService ) {
     this.searchControl.valueChanges
@@ -32,7 +32,7 @@ export class AtlasComponent implements OnInit {
         // This code will execute after 300ms of user input pause
         if(newValue) {
           var data:any = {};
-        data.geneId = newValue?.trim();
+        data.cutarId = newValue?.trim();
           this.showSpinner = true;
           this.geneService.getsamplesImg(data).subscribe((res:any) => {
             this.sampleTissueImg =  res.data
@@ -74,7 +74,7 @@ export class AtlasComponent implements OnInit {
     //   })
     // }
 
-  
+
 }
 getGenes() {
   this.geneService.getGeneNameList().subscribe((res:any) => {
@@ -84,7 +84,7 @@ getGenes() {
 
 onSelect(event) {
   var data:any = {};
-  data.geneId = event.target.value;
+  data.cutarId = event.target.value;
   this.showSpinner = true;
   if(event?.target?.value && event.target.value !=" " && event.target.value !="") {
     this.geneService.getsamplesImg(data).subscribe((res:any) => {
@@ -97,7 +97,7 @@ onSelect(event) {
   this.showGenes = false;
   this.showSpinner = false;
  })
-  } 
+  }
 
 }
 
