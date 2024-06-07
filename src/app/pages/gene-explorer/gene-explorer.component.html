@@ -3,17 +3,6 @@
     <nb-card-body class="shadow rounded pt-1">
         <div class="card pb-4 mb-4" style="font-size: 14px !important;font-family: 'Exo 2';">
             <p-toast></p-toast>
-            <!-- <p-toolbar styleClass="mb-4 gap-2">
-    <ng-template pTemplate="left">
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
-        <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
-    </ng-template>
-
-    <ng-template pTemplate="right">
-        <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
-        <button pButton pRipple label="Export" (click)="ExportExcel()" icon="pi pi-upload" class="p-button-help"></button>
-    </ng-template>
-</p-toolbar> -->
             <p-table id="primengTable" #dt [value]="products" [rows]="itemPrePage" [paginator]="true"
                 [globalFilterFields]="['id', 'chromosome','start', 'end','glId', 'samples']"
                 [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" [lazy]="true" [loading]="loading"
@@ -38,69 +27,37 @@
                             </span>
                         </div>
                         <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12 p-0 text-right">
-                            <!-- <div class="col-12 row p-0">
-
-              <div class="col-12 col-xl-4 col-lg-4 col-md-4 col-sm-4 p-0 text-right">
-                <button style="height: 31px !important;" nbButton hero outline status="primary" size="tiny"
-                  class="toolparBatton">
-                  <nb-icon icon="archive"></nb-icon>Clear All Filter
-                </button>
-              </div>
-              <div class="col-12 col-xl-4 col-lg-5 col-md-4 col-sm-4  p-0 text-right ">
-                <button style="height: 31px !important;" nbButton hero outline size="tiny" #btnClearFltr status="primary"
-                  class=" toolparBatton">
-                  <nb-icon icon="refresh-outline"></nb-icon>Refresh
-                </button>
-              </div>
-              <div class="col-12 col-xl-4 col-lg-3 col-md-4 col-sm-4  p-0 text-right ">
-                <button style="height: 31px !important;" nbButton hero outline size="tiny" status="success"  class=" toolparBatton">
-                  <nb-icon icon="navigation-2"></nb-icon>Export XL
-                </button>
-              </div>
-            </div> -->
-                            <!-- <nb-button-group status="primary" class="toolparBatton">
-                                <button nbButton status="success" size="small" (click)="clear()">
-                                    <nb-icon icon="brush-outline"></nb-icon>
-                                </button>
-                                <button nbButton status="danger" size="small" (click)="refres()">
-                                    <nb-icon icon="refresh-outline"></nb-icon>
-                                </button>
-                                <button nbButton status="danger" size="small" (click)="ExportExcel()">
-                                    <nb-icon icon="navigation-2"></nb-icon>
-                                </button>
-                            </nb-button-group> -->
                         </div>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pResizableColumn pSortableColumn="CUTAR_ID">
+                        <th pResizableColumn pSortableColumn="cutar_id">
                             <div class="flex justify-content-between align-items-center d-flex">
-                                Cutar Id
-                                <p-sortIcon field="CUTAR_ID"></p-sortIcon>
-                                <p-columnFilter type="text" field="CUTAR_ID" display="menu"
-                                    class="ml-auto"></p-columnFilter>
+                                cuTAR Id
+                                <p-sortIcon field="cutar_id"></p-sortIcon>
+                                <p-columnFilter type="text" field="cutar_id" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                         </th>
-                        <th pResizableColumn pSortableColumn="CHROMOSOME">
+                        <th pResizableColumn pSortableColumn="chromosome">
                             <div class="flex justify-content-between align-items-center d-flex">
                                 Chromosome
-                                <p-sortIcon field="CHROMOSOME"></p-sortIcon>
-                                <p-columnFilter type="text" field="CHROMOSOME" display="menu" class="ml-auto">
+                                <p-sortIcon field="chromosome"></p-sortIcon>
+                                <p-columnFilter type="text" field="chromosome" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="START">
+                        <th pResizableColumn pSortableColumn="start">
                             <div class="flex justify-content-between align-items-center">
                                 Start
-                                <p-sortIcon field="START"></p-sortIcon>
-                                <p-columnFilter type="text" field="START" display="menu" class="ml-auto">
+                                <p-sortIcon field="start"></p-sortIcon>
+                                <p-columnFilter type="text" field="start" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="END">
+                        <th pResizableColumn pSortableColumn="end">
                             <div class="flex justify-content-between align-items-center">
                                 End
                                 <p-sortIcon field="END"></p-sortIcon>
@@ -108,215 +65,170 @@
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="TRANSCRIPT">
+                        <th pResizableColumn pSortableColumn="transcript">
                             <div class="flex justify-content-between align-items-center">
                                 Transcript
-                                <p-sortIcon field="TRANSCRIPT"></p-sortIcon>
-                                <p-columnFilter type="text" field="TRANSCRIPT" display="menu" class="ml-auto">
+                                <p-sortIcon field="transcript"></p-sortIcon>
+                                <p-columnFilter type="text" field="transcript" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="STRAND">
+                        <th pResizableColumn pSortableColumn="strand">
                             <div class="flex justify-content-between align-items-center">
                                 Strand
-                                <p-sortIcon field="STRAND"></p-sortIcon>
-                                <p-columnFilter type="text" field="STRAND" display="menu" class="ml-auto">
+                                <p-sortIcon field="strand"></p-sortIcon>
+                                <p-columnFilter type="text" field="strand" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="SAMPLES_DETECTED">
+                        <th pResizableColumn pSortableColumn="samples_detected">
                             <div class="flex justify-content-between align-items-center">
                                 Samples Detected
-                                <p-sortIcon field="SAMPLES_DETECTED"></p-sortIcon>
-                                <p-columnFilter type="text" field="SAMPLES_DETECTED" display="menu" class="ml-auto">
+                                <p-sortIcon field="samples_detected"></p-sortIcon>
+                                <p-columnFilter type="text" field="samples_detected" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="CANCER_TYPES_DETECTED">
+                        <th pResizableColumn pSortableColumn="cancer_types_detected">
                             <div class="flex justify-content-between align-items-center">
                                 Cancer Types Detected
-                                <p-sortIcon field="CANCER_TYPES_DETECTED"></p-sortIcon>
-                                <p-columnFilter type="text" field="CANCER_TYPES_DETECTED" display="menu"
+                                <p-sortIcon field="cancer_types_detected"></p-sortIcon>
+                                <p-columnFilter type="text" field="cancer_types_detected" display="menu"
                                     class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="CELL_TYPE_SPECIFICITY">
+                        <th pResizableColumn pSortableColumn="cell_type_specificity">
                             <div class="flex justify-content-between align-items-center">
                                 Cell Type Specificity
-                                <p-sortIcon field="CELL_TYPE_SPECIFICITY"></p-sortIcon>
-                                <p-columnFilter type="text" field="CELL_TYPE_SPECIFICITY" display="menu"
+                                <p-sortIcon field="cell_type_specificity"></p-sortIcon>
+                                <p-columnFilter type="text" field="cell_type_specificity" display="menu"
                                     class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE">
+                        <th pResizableColumn pSortableColumn="cell_type_specificity_in_cancer_type">
                             <div class="flex justify-content-between align-items-center">
                                 Cell Type Specificity In Cancer Type
-                                <p-sortIcon field="CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE"></p-sortIcon>
-                                <p-columnFilter type="text" field="CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE" display="menu"
+                                <p-sortIcon field="cell_type_specificity_in_cancer_type"></p-sortIcon>
+                                <p-columnFilter type="text" field="cell_type_specificity_in_cancer_type" display="menu"
                                     class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="DETECTION_IN_OTHER_DATABASES">
+                        <th pResizableColumn pSortableColumn="detection_in_other_databases">
                             <div class="flex justify-content-between align-items-center">
                                 Detection In Other Databases
-                                <p-sortIcon field="DETECTION_IN_OTHER_DATABASES"></p-sortIcon>
-                                <p-columnFilter type="text" field="DETECTION_IN_OTHER_DATABASES" display="menu"
+                                <p-sortIcon field="detection_in_other_databases"></p-sortIcon>
+                                <p-columnFilter type="text" field="detection_in_other_databases" display="menu"
                                     class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE">
+                        <th pResizableColumn pSortableColumn="cell_type_specificity_in_cancer_type">
                             <div class="flex justify-content-between align-items-center">
                                 Cell Type Specificity In Cancer Type
-                                <p-sortIcon field="CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE"></p-sortIcon>
-                                <p-columnFilter type="text" field="CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE" display="menu"
+                                <p-sortIcon field="cell_type_specificity_in_cancer_type"></p-sortIcon>
+                                <p-columnFilter type="text" field="cell_type_specificity_in_cancer_type" display="menu"
                                     class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="ID_IN_OTHER_DATABASES">
+                        <th pResizableColumn pSortableColumn="id_in_other_databases">
                             <div class="flex justify-content-between align-items-center">
                                 Id In Other Databases
-                                <p-sortIcon field="ID_IN_OTHER_DATABASES"></p-sortIcon>
-                                <p-columnFilter type="text" field="ID_IN_OTHER_DATABASES" display="menu"
+                                <p-sortIcon field="id_in_other_databases"></p-sortIcon>
+                                <p-columnFilter type="text" field="id_in_other_databases" display="menu"
                                     class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="NONCODEID">
+                        <th pResizableColumn pSortableColumn="noncodeid">
                             <div class="flex justify-content-between align-items-center">
                                 Non Codeied
-                                <p-sortIcon field="NONCODEID"></p-sortIcon>
-                                <p-columnFilter type="text" field="NONCODEID" display="menu" class="ml-auto">
+                                <p-sortIcon field="noncodeid"></p-sortIcon>
+                                <p-columnFilter type="text" field="noncodeid" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="DISEASE">
+                        <th pResizableColumn pSortableColumn="disease">
                             <div class="flex justify-content-between align-items-center">
                                 Disease
-                                <p-sortIcon field="DISEASE"></p-sortIcon>
-                                <p-columnFilter type="text" field="DISEASE" display="menu" class="ml-auto">
+                                <p-sortIcon field="disease"></p-sortIcon>
+                                <p-columnFilter type="text" field="disease" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="GENE">
+                        <th pResizableColumn pSortableColumn="gene">
                             <div class="flex justify-content-between align-items-center">
                                 Gene
-                                <p-sortIcon field="GENE"></p-sortIcon>
-                                <p-columnFilter type="text" field="GENE" display="menu" class="ml-auto">
+                                <p-sortIcon field="gene"></p-sortIcon>
+                                <p-columnFilter type="text" field="gene" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="CLASSIFICATION">
+                        <th pResizableColumn pSortableColumn="classification">
                             <div class="flex justify-content-between align-items-center">
                                 Classification
-                                <p-sortIcon field="CLASSIFICATION"></p-sortIcon>
-                                <p-columnFilter type="text" field="CLASSIFICATION" display="menu" class="ml-auto">
+                                <p-sortIcon field="classification"></p-sortIcon>
+                                <p-columnFilter type="text" field="classification" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="OVERLAPPING_PROMOTER">
+                        <th pResizableColumn pSortableColumn="overlapping_promoter">
                             <div class="flex justify-content-between align-items-center">
                                 Overlapping Promoter
-                                <p-sortIcon field="OVERLAPPING_PROMOTER"></p-sortIcon>
-                                <p-columnFilter type="text" field="OVERLAPPING_PROMOTER" display="menu" class="ml-auto">
+                                <p-sortIcon field="overlapping_promoter"></p-sortIcon>
+                                <p-columnFilter type="text" field="overlapping_promoter" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="OVERLAPPING_ENHANCER">
+                        <th pResizableColumn pSortableColumn="overlapping_enhancer">
                             <div class="flex justify-content-between align-items-center">
                                 Overlapping Enhancer
-                                <p-sortIcon field="OVERLAPPING_ENHANCER"></p-sortIcon>
-                                <p-columnFilter type="text" field="OVERLAPPING_ENHANCER" display="menu" class="ml-auto">
+                                <p-sortIcon field="overlapping_enhancer"></p-sortIcon>
+                                <p-columnFilter type="text" field="overlapping_enhancer" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="ENHANCER_ASSOCIATED">
+                        <th pResizableColumn pSortableColumn="enhancer_associated">
                             <div class="flex justify-content-between align-items-center">
                                 Enhancer Associated
-                                <p-sortIcon field="ENHANCER_ASSOCIATED"></p-sortIcon>
-                                <p-columnFilter type="text" field="ENHANCER_ASSOCIATED" display="menu" class="ml-auto">
+                                <p-sortIcon field="enhancer_associated"></p-sortIcon>
+                                <p-columnFilter type="text" field="enhancer_associated" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="OVERLAPPING_SNPS">
+                        <th pResizableColumn pSortableColumn="overlapping_snps">
                             <div class="flex justify-content-between align-items-center">
-                                Overlapping SNPS
-                                <p-sortIcon field="OVERLAPPING_SNPS"></p-sortIcon>
-                                <p-columnFilter type="text" field="OVERLAPPING_SNPS" display="menu" class="ml-auto">
+                                Overlapping SNPs
+                                <p-sortIcon field="overlapping_snps"></p-sortIcon>
+                                <p-columnFilter type="text" field="overlapping_snps" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
                         </th>
-                        <th pResizableColumn pSortableColumn="CODING_POTENTIAL">
-                            <div class="flex justify-content-between align-items-center">
-                                Coding Potential
-                                <p-sortIcon field="CODING_POTENTIAL"></p-sortIcon>
-                                <p-columnFilter type="text" field="CODING_POTENTIAL" display="menu" class="ml-auto">
-                                </p-columnFilter>
-                            </div>
-
-                        </th>
-                        <th pResizableColumn pSortableColumn="COSERVATION_SCORE">
-                            <div class="flex justify-content-between align-items-center">
-                                Coservation Score
-                                <p-sortIcon field="COSERVATION_SCORE"></p-sortIcon>
-                                <p-columnFilter type="text" field="COSERVATION_SCORE" display="menu" class="ml-auto">
-                                </p-columnFilter>
-                            </div>
-
-                        </th>
-                        <th pResizableColumn pSortableColumn="OVERLAPPING_ORF">
+                        <th pResizableColumn pSortableColumn="overlapping_orf">
                             <div class="flex justify-content-between align-items-center">
                                 Overlapping ORF
-                                <p-sortIcon field="OVERLAPPING_ORF"></p-sortIcon>
-                                <p-columnFilter type="text" field="OVERLAPPING_ORF" display="menu" class="ml-auto">
-                                </p-columnFilter>
-                            </div>
-
-                        </th>
-                        <th pResizableColumn pSortableColumn="MFE_SCORE">
-                            <div class="flex justify-content-between align-items-center">
-                                MFE Score
-                                <p-sortIcon field="MFE_SCORE"></p-sortIcon>
-                                <p-columnFilter type="text" field="MFE_SCORE" display="menu" class="ml-auto">
-                                </p-columnFilter>
-                            </div>
-
-                        </th>
-                        <th pResizableColumn pSortableColumn="PROGNOSTIC_VALUE">
-                            <div class="flex justify-content-between align-items-center">
-                                Prognostic Value
-                                <p-sortIcon field="PROGNOSTIC_VALUE"></p-sortIcon>
-                                <p-columnFilter type="text" field="PROGNOSTIC_VALUE" display="menu" class="ml-auto">
-                                </p-columnFilter>
-                            </div>
-
-                        </th>
-                        <th pResizableColumn pSortableColumn="VALIDATION">
-                            <div class="flex justify-content-between align-items-center">
-                                Validation
-                                <p-sortIcon field="VALIDATION"></p-sortIcon>
-                                <p-columnFilter type="text" field="VALIDATION" display="menu" class="ml-auto">
+                                <p-sortIcon field="overlapping_orf"></p-sortIcon>
+                                <p-columnFilter type="text" field="overlapping_orf" display="menu" class="ml-auto">
                                 </p-columnFilter>
                             </div>
 
@@ -325,33 +237,28 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
-                        <td>{{ product?.CUTAR_ID }}</td>
-                        <td>{{ product?.CHROMOSOME}}</td>
-                        <td>{{ product?.START }}</td>
-                        <td>{{ product?.END }}</td>
-                        <td>{{ product?.TRANSCRIPT }}</td>
-                        <td>{{ product?.STRAND }}</td>
-                        <td>{{ product?.SAMPLES_DETECTED }}</td>
-                        <td>{{ product?.CANCER_TYPES_DETECTED }}</td>
-                        <td>{{ product?.CELL_TYPE_SPECIFICITY }}</td>
-                        <td>{{ product?.CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE }}</td>
-                        <td>{{ product?.DETECTION_IN_OTHER_DATABASES }}</td>
-                        <td>{{ product?.CELL_TYPE_SPECIFICITY_IN_CANCER_TYPE}}</td>
-                        <td>{{ product?.ID_IN_OTHER_DATABASES }}</td>
-                        <td>{{ product?.NONCODEID }}</td>
-                        <td>{{ product?.DISEASE }}</td>
-                        <td>{{ product?.GENE }}</td>
-                        <td>{{ product?.CLASSIFICATION }}</td>
-                        <td>{{ product?.OVERLAPPING_PROMOTER }}</td>
-                        <td>{{ product?.OVERLAPPING_ENHANCER }}</td>
-                        <td>{{ product?.ENHANCER_ASSOCIATED }}</td>
-                        <td>{{ product?.OVERLAPPING_SNPS }}</td>
-                        <td>{{ product?.CODING_POTENTIAL }}</td>
-                        <td>{{ product?.COSERVATION_SCORE }}</td>
-                        <td>{{ product?.OVERLAPPING_ORF }}</td>
-                        <td>{{ product?.MFE_SCORE }}</td>
-                        <td>{{ product?.PROGNOSTIC_VALUE }}</td>
-                        <td>{{ product?.VALIDATION }}</td>
+                        <td>{{ product?.cutarId }}</td>
+                        <td>{{ product?.chromosome}}</td>
+                        <td>{{ product?.start }}</td>
+                        <td>{{ product?.end }}</td>
+                        <td>{{ product?.transcript }}</td>
+                        <td>{{ product?.strand }}</td>
+                        <td>{{ product?.samplesDetected }}</td>
+                        <td>{{ product?.cancerTypesDetected }}</td>
+                        <td>{{ product?.cellTypeSpecificity }}</td>
+                        <td>{{ product?.cellTypeSpecificityInCancerType }}</td>
+                        <td>{{ product?.detectionInOtherDatabases }}</td>
+                        <td>{{ product?.cellTypeSpecificityInCancerType}}</td>
+                        <td>{{ product?.idInOtherDatabases }}</td>
+                        <td>{{ product?.noncodeid }}</td>
+                        <td>{{ product?.disease }}</td>
+                        <td>{{ product?.gene }}</td>
+                        <td>{{ product?.classification }}</td>
+                        <td>{{ product?.overlappingPromoter }}</td>
+                        <td>{{ product?.overlappingEnhancer }}</td>
+                        <td>{{ product?.enhancerAssociated }}</td>
+                        <td>{{ product?.overlappingSnps }}</td>
+                        <td>{{ product?.overlappingOrf }}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
@@ -360,81 +267,6 @@
                 </ng-template>
             </p-table>
         </div>
-        <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true"
-            styleClass="p-fluid">
-            <ng-template pTemplate="content">
-                <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image"
-                    [alt]="product.image" class="block m-auto pb-3" *ngIf="product.image" />
-                <div class="field">
-                    <label for="name">Name</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus />
-                    <small class="p-error" *ngIf="submitted && !product.name">Name is required.</small>
-                </div>
-                <div class="field">
-                    <label for="description">Description</label>
-                    <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3"
-                        cols="20"></textarea>
-                </div>
-
-                <div class="field">
-                    <label for="inventoryStatus">Inventory Status</label>
-                    <p-dropdown [(ngModel)]="product.inventoryStatus" inputId="inventoryStatus" [options]="statuses">
-                        <ng-template pTemplate="selectedItem">
-                            <p-tag [value]="product.inventoryStatus.toUpperCase()"
-                                [severity]="getSeverity(product.inventoryStatus.toUpperCase())"></p-tag>
-                        </ng-template>
-                        <ng-template let-option pTemplate="item">
-                            <p-tag [value]="option.label" [severity]="getSeverity(option.label)"></p-tag>
-                        </ng-template>
-                    </p-dropdown>
-                </div>
-
-                <div class="field">
-                    <label class="mb-3">Category</label>
-                    <div class="formgrid grid">
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category1" name="category" value="Accessories"
-                                [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category1">Accessories</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category2" name="category" value="Clothing"
-                                [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category2">Clothing</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category3" name="category" value="Electronics"
-                                [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category3">Electronics</label>
-                        </div>
-                        <div class="field-radiobutton col-6">
-                            <p-radioButton id="category4" name="category" value="Fitness"
-                                [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category4">Fitness</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="price">Price</label>
-                        <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD"
-                            locale="en-US"></p-inputNumber>
-                    </div>
-                    <div class="field col">
-                        <label for="quantity">Quantity</label>
-                        <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
-                    </div>
-                </div>
-            </ng-template>
-
-            <ng-template pTemplate="footer">
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-                    (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-                    (click)="saveProduct()"></button>
-            </ng-template>
-        </p-dialog>
 
         <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
