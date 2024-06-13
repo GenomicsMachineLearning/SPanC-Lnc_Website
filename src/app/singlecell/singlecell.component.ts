@@ -1,105 +1,96 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
-import { GeneexplorerService } from '../../service/geneexplorer.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {debounceTime} from 'rxjs/operators';
+import {GeneexplorerService} from '../../service/geneexplorer.service';
 
 @Component({
   selector: 'ngx-singlecell',
   templateUrl: './singlecell.component.html',
   styleUrls: ['./singlecell.component.scss']
 })
-export class SinglecellComponent implements OnInit {
+export class SinglecellComponent {
 
-
-  public geneAtlas:any = [{name:'IGKC'},{name:'FLG'},{name:'LOR'},{name:'LCE1C'},{name:'P13'},{name:'KRT1'},{name:'LTF'},{name:'MMP'}]
-  public filteredGenes:any = [];
+  public geneAtlas: any = [{name: 'IGKC'}, {name: 'FLG'}, {name: 'LOR'}, {name: 'LCE1C'}, {name: 'P13'}, {name: 'KRT1'}, {name: 'LTF'}, {name: 'MMP'}]
+  public filteredGenes: any = [];
   // public filteredGenesOrg:any = [];
-  public filteredGenesOrg:any = [{CUTAR_ID:"cuTAR100897"},{CUTAR_ID:"cuTAR213507"},{CUTAR_ID: "cuTAR234975"}]
+  public filteredGenesOrg: any = [{CUTAR_ID: "cuTAR100897"}, {CUTAR_ID: "cuTAR213507"}, {CUTAR_ID: "cuTAR234975"}]
 
   // public sampleGenes:any = [{image:"assets/images/geneExporer/hnopc.jpeg",name:"Head and Neck OPSCC"}];
-  public sampleGenes:any = [{"image":"assets/images/geneExporer/Mel_scRNA_UMAP.png","name":'Acral and Cutaneous Melanoma'}]
+  public sampleGenes: any = [{
+    "image": "assets/images/geneExporer/Mel_scRNA_UMAP.png",
+    "name": 'Acral and Cutaneous Melanoma'
+  }]
   // public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'}, {"image":"assets/images/geneExporer/KidneyCancer.png","name":'Kidney cancer'}, {"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'}]
-  public sampleTissueImg:any = [];
-  public showSpinner:boolean = false;
-  public showGenes:boolean = false;
-  public showNotFound:boolean = true
+  public sampleTissueImg: any = [];
+  public showSpinner: boolean = false;
+  public showGenes: boolean = false;
+  public showNotFound: boolean = true
   searchControl = new FormControl();
-  // public ExampleGenes:any = [{image:"assets/images/geneExporer/scc_visium_exmp.png",name:"SCC:Visium"},
-  // {image:"assets/images/geneExporer/bcc_visium_exmp.png",name:"BCC:Visium"},{image:"assets/images/geneExporer/mel_vis_exmp.png",name:"Melanoma:Visium"}]
-  constructor(private geneService: GeneexplorerService ) {
+
+  constructor(private geneService: GeneexplorerService) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
       .subscribe(newValue => {
         // This code will execute after 300ms of user input pause
-        if(newValue) {
-          var data:any = {};
-        data.cutarId = newValue?.trim();
+        if (newValue) {
+          var data: any = {};
+          data.cutarId = newValue?.trim();
           this.showSpinner = true;
-          this.geneService.getsamplesImgScr(data).subscribe((res:any) => {
-            this.sampleTissueImg =  res.data
+          this.geneService.getsamplesImgScr(data).subscribe((res: any) => {
+            this.sampleTissueImg = res.data
             this.showSpinner = false;
             this.showGenes = true;
             this.showNotFound = false
-       },(err) => {
-        this.showNotFound = true;
-        this.showGenes = false;
-        this.showSpinner = false;
-       })
+          }, (err) => {
+            this.showNotFound = true;
+            this.showGenes = false;
+            this.showSpinner = false;
+          })
         }
       });
   }
 
   filteredCountries: any[];
-  ngOnInit(): void {
-    //  this.getGenes();
-  }
 
   filterGeneAtlas(event: any) {
     let filtered: any[] = [];
     let query = event.query;
     // if(query) {
-      this.geneService.getGeneNameList({search:query}).subscribe((res:any) => {
-        this.filteredGenesOrg =res.list;
-        for (let i = 0; i < (this.filteredGenesOrg as any[]).length; i++) {
-          let geneAtlas = (this.filteredGenesOrg as any[])[i];
-          if (geneAtlas?.CUTAR_ID?.toLowerCase().indexOf(query?.toLowerCase()) == 0) {
-              filtered.push(geneAtlas);
-          }
+    this.geneService.getGeneNameList({search: query}).subscribe((res: any) => {
+      this.filteredGenesOrg = res.list;
+      for (let i = 0; i < (this.filteredGenesOrg as any[]).length; i++) {
+        let geneAtlas = (this.filteredGenesOrg as any[])[i];
+        if (geneAtlas?.CUTAR_ID?.toLowerCase().indexOf(query?.toLowerCase()) == 0) {
+          filtered.push(geneAtlas);
+        }
       }
       this.filteredGenes = filtered;
-      })
-    // }
-    // else {
-    //   this.geneService.getGeneNameList().subscribe((res:any) => {
-    //     this.filteredGenesOrg =res.list
-    //   })
-    // }
-
-
-}
-getGenes() {
-  this.geneService.getGeneNameList().subscribe((res:any) => {
-    this.filteredGenesOrg =res.list
-  })
-}
-
-onSelect(event) {
-  var data:any = {};
-  data.cutarId = event.target.value;
-  this.showSpinner = true;
-  if(event?.target?.value && event.target.value !=" " && event.target.value !="") {
-    this.geneService.getsamplesImgScr(data).subscribe((res:any) => {
-      this.sampleTissueImg =  res.data
-      this.showSpinner = false;
-      this.showGenes = true;
-      this.showNotFound = false
- },(err) => {
-  this.showNotFound = true;
-  this.showGenes = false;
-  this.showSpinner = false;
- })
+    })
   }
 
-}
+  getGenes() {
+    this.geneService.getGeneNameList().subscribe((res: any) => {
+      this.filteredGenesOrg = res.list
+    })
+  }
+
+  onSelect(event) {
+    var data: any = {};
+    data.cutarId = event.target.value;
+    this.showSpinner = true;
+    if (event?.target?.value && event.target.value != " " && event.target.value != "") {
+      this.geneService.getsamplesImgScr(data).subscribe((res: any) => {
+        this.sampleTissueImg = res.data
+        this.showSpinner = false;
+        this.showGenes = true;
+        this.showNotFound = false
+      }, (err) => {
+        this.showNotFound = true;
+        this.showGenes = false;
+        this.showSpinner = false;
+      })
+    }
+
+  }
 
 }

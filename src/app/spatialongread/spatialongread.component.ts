@@ -9,7 +9,7 @@ import { GeneexplorerService } from '../../service/geneexplorer.service';
   templateUrl: './spatialongread.component.html',
   styleUrls: ['./spatialongread.component.scss']
 })
-export class SpatialongreadComponent implements OnInit {
+export class SpatialongreadComponent {
 
   public geneAtlas:any = [{name:'IGKC'},{name:'FLG'},{name:'LOR'},{name:'LCE1C'},{name:'P13'},{name:'KRT1'},{name:'LTF'},{name:'MMP'}]
   public filteredGenes:any = [];
@@ -50,9 +50,6 @@ export class SpatialongreadComponent implements OnInit {
   }
 
   filteredCountries: any[];
-  ngOnInit(): void {
-    //  this.getGenes();
-  }
 
   filterGeneAtlas(event: any) {
     let filtered: any[] = [];
