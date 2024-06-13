@@ -5,6 +5,6 @@
  */
 export const environment = {
   production: true,
-  apiBaseURL:'https://prakrithi.pythonanywhere.com'
+  apiBaseURL:'https://spanclnc.click'
 };
-f
+
