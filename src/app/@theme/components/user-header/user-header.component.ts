@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router} from '@angular/router';
 import{UserMenu} from '../../../../interFaces/UserManu'
 @Component({
@@ -6,7 +6,7 @@ import{UserMenu} from '../../../../interFaces/UserManu'
   templateUrl: './user-header.component.html',
   styleUrls: ['./user-header.component.scss']
 })
-export class UserHeaderComponent implements OnInit {
+export class UserHeaderComponent  {
  public UserMenu:UserMenu[];
   constructor(private route:Router) {
     this.UserMenu=[
@@ -41,7 +41,7 @@ export class UserHeaderComponent implements OnInit {
         home: false,
     },
 
-      
+
 
     ]
     if(this.UserMenu.length){
@@ -49,12 +49,11 @@ export class UserHeaderComponent implements OnInit {
       if(inde!=-1){
        var link:any= this.UserMenu[this.UserMenu.findIndex((menu:any)=>menu.home===true)];
         this.route.navigate([link['link']])
-       
+
       }
     }
    }
-  ngOnInit(): void {
-  }
+  
   openNav(){
     document.getElementById("mySidenav").style.width = "250px";
   }
