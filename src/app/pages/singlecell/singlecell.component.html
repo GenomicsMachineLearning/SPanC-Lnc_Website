@@ -31,8 +31,8 @@
               </nb-card-body>
             </nb-card>
           </div>
-          <ng-container *ngIf="showGenes;else nofeaturefound"> 
-  
+          <ng-container *ngIf="showGenes;else nofeaturefound">
+
             <div class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
               <div class="sampleSpecies" *ngIf="this.showGenes">
                 <ng-container *ngFor="let expGenes of sampleTissueImg">
@@ -41,21 +41,21 @@
                       <div class="col-12 text-center">
                         <img class="sampleSpeciesImages" [src]="'data:image/png;base64,' + expGenes.plotImage">
                       </div>
-                     
+
                     </div>
                   </p-fieldset>
                 </ng-container>
               </div>
             </div>
-  
+
           </ng-container>
           <ng-template class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" #nofeaturefound>
             <div class="image-container" *ngIf="this.showNotFound && !this.showGenes" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
-              <img style="width:50%;" src="assets/images/nofeaturefound.jpg" alt="nofeaturefound">
+              <img style="width:50%;" src="../../../assets/images/nofeaturefound.jpg" alt="nofeaturefound">
               <div class="image-caption">Feature not found in sample</div>
             </div>
           </ng-template>
-  
+
         </div>
       </div>
     </nb-card-body>

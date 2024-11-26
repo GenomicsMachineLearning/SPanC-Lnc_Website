@@ -23,12 +23,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     NbLayoutModule,
     NbCardModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NbSpinnerModule,
-    AppRoutingModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
