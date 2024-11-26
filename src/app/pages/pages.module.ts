@@ -8,6 +8,7 @@ import {
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
+  NbSpinnerModule
 } from '@nebular/theme';
 import {ThemeModule} from '../@theme/theme.module';
 import {PagesComponent} from './pages.component';
@@ -17,10 +18,6 @@ import {AboutComponent} from './about/about.component';
 import {GeneExplorerComponent} from './gene-explorer/gene-explorer.component';
 import {AtlasComponent} from './atlas/atlas.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {InputTextModule} from 'primeng/inputtext';
-import {InputNumberModule} from 'primeng/inputnumber';
-import {OrderListModule} from 'primeng/orderlist';
-import {PaginatorModule} from 'primeng/paginator';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {AutoCompleteModule} from 'primeng/autocomplete';
@@ -33,7 +30,12 @@ import {SinglecellComponent} from "./singlecell/singlecell.component";
   imports: [
     PagesRoutingModule,
     MiscellaneousModule,
+    AutoCompleteModule,
+    ConfirmDialogModule,
+    ReactiveFormsModule,
+    TableModule,
     ThemeModule,
+    ToastModule,
     NbButtonModule,
     NbButtonGroupModule,
     NbCardModule,
@@ -42,15 +44,7 @@ import {SinglecellComponent} from "./singlecell/singlecell.component";
     NbLayoutModule,
     NbListModule,
     NbMenuModule,
-    AutoCompleteModule,
-    ConfirmDialogModule,
-    InputTextModule,
-    InputNumberModule,
-    OrderListModule,
-    PaginatorModule,
-    ReactiveFormsModule,
-    TableModule,
-    ToastModule,
+    NbSpinnerModule,
   ],
   declarations: [
     PagesComponent,
