@@ -9,27 +9,14 @@ import {
   LayoutService,
   StateService,
 } from './utils';
-import { SmartTableData } from './data/smart-table';
-import { UserActivityData } from './data/user-activity';
-import { OrdersChartData } from './data/orders-chart';
 import { StatsBarData } from './data/stats-bar';
-import { CountryOrderData } from './data/country-order';
 import { StatsProgressBarData } from './data/stats-progress-bar';
 
-import { SmartTableService } from './mock/smart-table.service';
-import { UserActivityService } from './mock/user-activity.service';
-import { OrdersChartService } from './mock/orders-chart.service';
 import { StatsBarService } from './mock/stats-bar.service';
-import { CountryOrderService } from './mock/country-order.service';
 import { StatsProgressBarService } from './mock/stats-progress-bar.service';
-import { MockDataModule } from './mock/mock-data.module';
 
 const DATA_SERVICES = [
-  { provide: SmartTableData, useClass: SmartTableService },
-  { provide: UserActivityData, useClass: UserActivityService },
-  { provide: OrdersChartData, useClass: OrdersChartService },
   { provide: StatsBarData, useClass: StatsBarService },
-  { provide: CountryOrderData, useClass: CountryOrderService },
   { provide: StatsProgressBarData, useClass: StatsProgressBarService },
 ];
 
@@ -41,7 +28,6 @@ export class NbSimpleRoleProvider extends NbRoleProvider {
 }
 
 export const NB_CORE_PROVIDERS = [
-  ...MockDataModule.forRoot().providers,
   ...DATA_SERVICES,
   ...NbAuthModule.forRoot({
 
