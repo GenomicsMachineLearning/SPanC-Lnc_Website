@@ -1,9 +1,6 @@
 // @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
 
-
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap');
-
-
 
 // themes - our custom or/and out of the box themes
 @import 'themes';
@@ -40,19 +37,20 @@
 ;
 
 
-.active{
-  background-color: #B39EB5 !important;
-  span{
-    color: #faf6fa ;
+.active {
+  background-color: #b39eb5 !important;
+
+  span {
+    color: #faf6fa;
   }
 }
 
 .ngxuserheader {
-  background-color: #B39EB5 !important;
+  background-color: #b39eb5 !important;
   height: 64px !important;
   font-size: 20px !important;
   padding: 0 !important;
-  color: #C1C5CB;
+  color: #c1c5cb;
 
   nav {
     height: 64px !important;
@@ -79,41 +77,47 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
   // background: #B39EB5;        /* color of the tracking area */
-  background: #FFFFFF;
+  background: #ffffff;
   /* color of the tracking area */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #B39EB5 !important;
-  border: 3px solid #B39EB5 !important;
+  background-color: #b39eb5 !important;
+  border: 3px solid #b39eb5 !important;
   /* creates padding around scroll thumb */
 }
-.footer{
-  nav{
-    padding-top: 0px !important;
-    padding-bottom:0px !important ;
+
+.footer {
+  nav {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
-.sidebar-toggle{
-  nb-icon{
-    color: #FFFFFF !important;
+
+.sidebar-toggle {
+  nb-icon {
+    color: #ffffff !important;
   }
-  
+
 }
-.header-container{
-  nb-icon{
-    color: #FFFFFF ;
+
+.header-container {
+  nb-icon {
+    color: #ffffff;
   }
 }
-nb-sidebar{
+
+nb-sidebar {
   .main-container {
     background-color: #dde2e9 !important;
-    .scrollable{
+
+    .scrollable {
       padding-top: 1px !important;
-      nb-menu{
-        .menu-items{
-          li{
-            a{
+
+      nb-menu {
+        .menu-items {
+          li {
+            a {
               // border-bottom: 1px solid #B39EB5 !important;
             }
           }
@@ -123,23 +127,25 @@ nb-sidebar{
   }
 
 }
-nb-layout-column{
+
+nb-layout-column {
   padding: 15px !important;
 }
 
 // @import 'ag-grid-community/styles/ag-grid.css';
 // @import 'ag-grid-community/styles/ag-theme-alpine.css';
 // @import "~bootstrap-icons/font/bootstrap-icons.css";
-.Useractive{
+.Useractive {
   color: #7d1486 !important;
 }
 
 :host ::ng-deep .p-dialog .product-image {
   width: 150px;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 2rem;
   display: block;
 }
-.p-datatable-table .ng-star-inserted{
+
+.p-datatable-table .ng-star-inserted {
   width: 100% !important;
 }
 
@@ -150,26 +156,30 @@ nb-layout-column{
 @import '../../../../node_modules/primeng/resources/themes/lara-light-teal/theme.css';
 // @import '../../../../node_modules/primeflex/primeflex.css';
 @import '../../../../node_modules/quill/dist/quill.snow.css';
-.active{
+.active {
   color: #7d1486 !important;
 }
 
 
 .atlasImageList {
-  fieldset{
+  fieldset {
     margin-bottom: 25px !important;
-    div{
-      padding: 0px !important;
-    } 
+
+    div {
+      padding: 0 !important;
+    }
   }
+
   // max-height: 400px !important;
   // margin-top: 80px !important;
 }
-.geneAutoSelect{
-  .p-autocomplete{
-    width:100% !important;
+
+.geneAutoSelect {
+  .p-autocomplete {
+    width: 100% !important;
   }
 }
+
 .image-container {
   display: flex;
   flex-direction: column;

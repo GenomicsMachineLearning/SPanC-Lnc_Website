@@ -9,8 +9,6 @@ import { GeneExplorerComponent } from './gene-explorer/gene-explorer.component';
 import { AtlasComponent } from './atlas/atlas.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
-import { DividerModule } from 'primeng/divider';
-import { DockModule } from 'primeng/dock';
 import { DragDropModule } from 'primeng/dragdrop';
 import { DropdownModule } from 'primeng/dropdown';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -44,7 +42,6 @@ import { PickListModule } from 'primeng/picklist';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { RatingModule } from 'primeng/rating';
-// import { ScrollerModule } from 'primeng/scroller';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -72,12 +69,8 @@ import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import { TreeModule } from 'primeng/tree';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
-// import { AnimateModule } from 'primeng/animate';
 import { CardModule } from 'primeng/card';
-import { BlockUIModule } from 'primeng/blockui';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { ProductService } from '../../service/geneExplorService';
-// import { ProductService } from 'src/service/productservice';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SinglecellComponent } from '../singlecell/singlecell.component';
@@ -102,16 +95,10 @@ import { SpatialongreadComponent } from '../spatialongread/spatialongread.compon
     NbButtonModule,
     AutoCompleteModule,
     ReactiveFormsModule,
-    // NbIconModule,
     NbIconModule,
     NbSpinnerModule,
-
     NbButtonGroupModule,
     NbFormFieldModule,
-
-
-
-
     DragDropModule,
     DropdownModule,
     DynamicDialogModule,
@@ -148,7 +135,6 @@ import { SpatialongreadComponent } from '../spatialongread/spatialongread.compon
     RatingModule,
     SelectButtonModule,
     SidebarModule,
-    // ScrollerModule,
     ScrollPanelModule,
     ScrollTopModule,
     SkeletonModule,
@@ -178,19 +164,17 @@ import { SpatialongreadComponent } from '../spatialongread/spatialongread.compon
     CardModule,
     ConfirmDialogModule,
     DialogModule
-   
+
   ],
   declarations: [
     PagesComponent,
     AboutComponent,
     GeneExplorerComponent,
     AtlasComponent,
-    SpatialongreadComponent, 
+    SpatialongreadComponent,
     SinglecellComponent
-    
-    // LogoHeaderComponent
   ],
-  providers:[ProductService]
+  providers:[]
 })
 export class PagesModule {
 

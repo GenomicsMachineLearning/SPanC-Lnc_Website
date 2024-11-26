@@ -3,7 +3,7 @@
     <nb-card-body class="shadow rounded pt-1">
         <div class="card pb-4 mb-4" style="font-size: 14px !important;font-family: 'Exo 2';">
             <p-toast></p-toast>
-            <p-table id="primengTable" #dt [value]="products" [rows]="itemPrePage" [paginator]="true"
+            <p-table class="primeng-table" #dt [value]="products" [rows]="itemPrePage" [paginator]="true"
                 [globalFilterFields]="['id', 'chromosome','start', 'end','glId', 'samples']"
                 [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" [lazy]="true" [loading]="loading"
                 [rowsPerPageOptions]="rowsPerPageOptions" [totalRecords]="totalRecords"
