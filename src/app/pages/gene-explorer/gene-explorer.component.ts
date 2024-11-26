@@ -1,8 +1,6 @@
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {ProductService} from '../../../service/geneExplorService';
 import {Product} from '../../../interFaces/geneExplor';
-import {Component, OnInit} from '@angular/core';
-import Data from '../../../assets/data/Incrna_sampledata.json'
+import {Component} from '@angular/core';
 import {GeneexplorerService} from '../../../service/geneexplorer.service';
 
 @Component({
@@ -18,8 +16,6 @@ export class GeneExplorerComponent {
   public loading: boolean
   itemPrePage: number = 10;
   products!: any[];
-
-  product!: Product;
 
   selectedProducts!: Product[] | null;
 

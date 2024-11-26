@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {GeneexplorerService} from '../../service/geneexplorer.service';
+import {GeneexplorerService} from '../../../service/geneexplorer.service';
 
 @Component({
   selector: 'ngx-singlecell',

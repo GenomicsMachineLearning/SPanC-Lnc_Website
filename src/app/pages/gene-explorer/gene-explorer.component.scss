@@ -1,24 +1,28 @@
 :host ::ng-deep .p-dialog .product-image {
-    width: 150px;
-    margin: 0 auto 2rem auto;
-    display: block;
+  width: 150px;
+  margin: 0 auto 2rem;
+  display: block;
 }
-.p-datatable-table .ng-star-inserted{
-    width: 100% !important;
-}
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap');
-*{
-    font-family: 'Exo 2' !important;
-  }
-.toolparBatton{
-    height: 31px !important;
-}
-#primengTable td {
-    text-overflow: ellipsis;
-    max-width: 250px;
- }
 
-p-table { 
-    word-break: normal;
-    overflow-wrap: anywhere;
-      }
+.p-datatable-table .ng-star-inserted {
+  width: 100% !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700&display=swap');
+* {
+  font-family: 'Exo 2' !important;
+}
+
+.toolparBatton {
+  height: 31px !important;
+}
+
+.primeng-table td {
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+p-table {
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
