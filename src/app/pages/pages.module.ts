@@ -8,7 +8,6 @@ import {
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
-  NbSpinnerModule
 } from '@nebular/theme';
 import {ThemeModule} from '../@theme/theme.module';
 import {PagesComponent} from './pages.component';
@@ -18,34 +17,40 @@ import {AboutComponent} from './about/about.component';
 import {GeneExplorerComponent} from './gene-explorer/gene-explorer.component';
 import {AtlasComponent} from './atlas/atlas.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {OrderListModule} from 'primeng/orderlist';
+import {PaginatorModule} from 'primeng/paginator';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SinglecellComponent} from './singlecell/singlecell.component';
-import {SpatialongreadComponent} from './spatialongread/spatialongread.component';
+import {SpatialongreadComponent} from "./spatialongread/spatialongread.component";
+import {SinglecellComponent} from "./singlecell/singlecell.component";
 
 
 @NgModule({
   imports: [
     PagesRoutingModule,
-    ThemeModule,
     MiscellaneousModule,
+    ThemeModule,
+    NbButtonModule,
+    NbButtonGroupModule,
     NbCardModule,
-    NbMenuModule,
+    NbFormFieldModule,
+    NbIconModule,
     NbLayoutModule,
     NbListModule,
-    NbCardModule,
-    NbButtonModule,
-    ReactiveFormsModule,
-    NbIconModule,
-    NbSpinnerModule,
-    NbButtonGroupModule,
-    NbFormFieldModule,
+    NbMenuModule,
     AutoCompleteModule,
     ConfirmDialogModule,
+    InputTextModule,
+    InputNumberModule,
+    OrderListModule,
+    PaginatorModule,
+    ReactiveFormsModule,
     TableModule,
-    ToastModule
+    ToastModule,
   ],
   declarations: [
     PagesComponent,
@@ -58,4 +63,5 @@ import {SpatialongreadComponent} from './spatialongread/spatialongread.component
   providers: []
 })
 export class PagesModule {
+
 }
