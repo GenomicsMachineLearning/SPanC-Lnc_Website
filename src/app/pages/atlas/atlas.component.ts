@@ -10,12 +10,8 @@ import {debounceTime} from 'rxjs/operators';
 })
 export class AtlasComponent {
 
-  public geneAtlas: any = [{name: 'IGKC'}, {name: 'FLG'}, {name: 'LOR'}, {name: 'LCE1C'}, {name: 'P13'}, {name: 'KRT1'}, {name: 'LTF'}, {name: 'MMP'}]
   public filteredGenes: any = [];
-  // public filteredGenesOrg:any = [];
   public filteredGenesOrg: any = [{CUTAR_ID: "cuTAR100897"}, {CUTAR_ID: "cuTAR213507"}, {CUTAR_ID: "cuTAR234975"}]
-
-  // public sampleGenes:any = [{image:"assets/images/geneExporer/hnopc.jpeg",name:"Head and Neck OPSCC"}];
   public sampleGenes: any = [{
     "image": "assets/images/geneExporer/headaneck.jpeg",
     "name": 'Head and Neck Cancer'
@@ -32,8 +28,6 @@ export class AtlasComponent {
   public showGenes: boolean = false;
   public showNotFound: boolean = true
   searchControl = new FormControl();
-  // public ExampleGenes:any = [{image:"assets/images/geneExporer/scc_visium_exmp.png",name:"SCC:Visium"},
-  // {image:"assets/images/geneExporer/bcc_visium_exmp.png",name:"BCC:Visium"},{image:"assets/images/geneExporer/mel_vis_exmp.png",name:"Melanoma:Visium"}]
   constructor(private geneService: GeneexplorerService) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
@@ -56,8 +50,6 @@ export class AtlasComponent {
         }
       });
   }
-
-  filteredCountries: any[];
 
   filterGeneAtlas(event: any) {
     let filtered: any[] = [];
