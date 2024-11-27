@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams, HttpUrlEncodingCodec} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {CustomHttpParamEncoder} from "./CustomHttpCodec";
 
 @Injectable({
   providedIn: 'root'
@@ -8,26 +9,33 @@ import { environment } from '../environments/environment';
 export class ApiService {
 
   constructor(
-    private http:HttpClient
-  ) { }
-
-get(url:string,body:any){
-  if(body){
-    return this.http.get(environment.apiBaseURL+''+url,{params:body})
-  }else{
-    return this.http.get(environment.apiBaseURL+''+url)
+    private http: HttpClient
+  ) {
   }
-}
-post(url:string,body:any){
-  return this.http.post(`${environment.apiBaseURL}${url}`,body)
-}
-delete(url:string,body:any){
-  return this.http.post(`${environment.apiBaseURL}${url}`,body)
-}
-update(url:string,body:any){
-  return this.http.put(`${environment.apiBaseURL}${url}`,body)
-}
 
+  get(url: string, body: any) {
+    if (body) {
+      const params = new HttpParams({
+        encoder: new CustomHttpParamEncoder(),
+        fromObject: body
+      });
+      return this.http.get(environment.apiBaseURL + '' + url, {params})
+    } else {
+      return this.http.get(environment.apiBaseURL + '' + url)
+    }
+  }
+
+  post(url: string, body: any) {
+    return this.http.post(`${environment.apiBaseURL}${url}`, body)
+  }
+
+  delete(url: string, body: any) {
+    return this.http.post(`${environment.apiBaseURL}${url}`, body)
+  }
+
+  update(url: string, body: any) {
+    return this.http.put(`${environment.apiBaseURL}${url}`, body)
+  }
 
 
 }

@@ -3,10 +3,10 @@
   <nb-card-body class="shadow rounded pt-1">
     <div class="card pb-4 mb-4" style="font-size: 14px !important;font-family: 'Exo 2';">
       <p-toast></p-toast>
-      <p-table class="primeng-table" #dt [value]="products" [rows]="itemPrePage" [paginator]="true"
-               [(selection)]="selectedProducts" [rowHover]="true" dataKey="id" [lazy]="true" [loading]="loading"
+      <p-table class="primeng-table" #dt [value]="genes" [rows]="itemPrePage" [paginator]="true"
+               [rowHover]="true" dataKey="id" [lazy]="true" [loading]="loading"
                [rowsPerPageOptions]="rowsPerPageOptions" [totalRecords]="totalRecords"
-               (onLazyLoad)="loadPatientListing($event)"
+               (onLazyLoad)="loadListing($event)"
                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                [showCurrentPageReport]="true" [resizableColumns]="true" columnResizeMode="expand"
                styleClass="p-datatable-gridlines">
@@ -210,7 +210,7 @@
         </ng-template>
         <ng-template pTemplate="summary">
           <div class="flex align-items-center justify-content-between">In total there are
-            {{ products ? products.length : 0 }} products.
+            {{ genes ? genes.length : 0 }} products.
           </div>
         </ng-template>
       </p-table>

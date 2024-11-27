@@ -1,7 +1,7 @@
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {Product} from '../../../interFaces/geneExplor';
 import {Component} from '@angular/core';
 import {GeneexplorerService} from '../../../service/geneexplorer.service';
+import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'ngx-gene-explorer',
@@ -15,65 +15,63 @@ export class GeneExplorerComponent {
   public totalRecords: number;
   public loading: boolean
   itemPrePage: number = 10;
-  products!: any[];
-
-  selectedProducts!: Product[] | null;
-
+  genes!: any[];
   statuses!: any[];
 
   constructor(
     private geneService: GeneexplorerService) {
   }
 
-
-  loadPatientListing(data: any) {
-    this.loading = true
-    var body = data;
-    var columnSearch: any[] = []
-    if (body) {
-      var object: any = body['filters']
-      for (const item in object) {
-        if (object[item].length) {
-          object[item].forEach((searchItem: any) => {
-            if (searchItem.value) {
-              columnSearch.push(searchItem.value)
-            }
-          });
-        }
-      }
-      var pages = body['first'] / body['rows'];
-      var queryParams: any = {
-        page: pages + 1,
-        limit: body['rows']
-      }
-      if (data.sortField) {
-        queryParams.ordering = data.sortField
-      } else {
-        queryParams.ordering = 'cutar_id'
-      }
-      if (data.sortOrder === -1) {
-        queryParams.ordering = '-' + queryParams.ordering
-      }
-      if (body['globalFilter']) {
-        if (columnSearch.toString()) {
-          queryParams['search'] = `${body['globalFilter']},${columnSearch.toString()}`
-        } else {
-          queryParams['search'] = body['globalFilter']
-        }
-      } else {
-        if (columnSearch.toString()) {
-          queryParams['search'] = `${columnSearch.toString()}`
-        }
-      }
-    }
-    this.geneService.getGeneExplorerList(queryParams).subscribe((res: any) => {
-      this.products = res.list
-      this.totalRecords = res.totalCount;
-      this.loading = false
-    })
+  private joinSearchParams(params: string[]): string {
+    return params
+      .filter(param => param != null && param.trim() !== '')
+      .join(',');
   }
 
+  loadListing(data: any) {
+    this.loading = true;
+    const queryParams: any = {};
+    if (data) {
+      queryParams.page = Math.floor(data.first / data.rows) + 1;
+      queryParams.limit = data.rows;
+      if (data.sortField) {
+        queryParams.ordering = data.sortOrder === -1 ? `-${data.sortField}` : data.sortField;
+      } else {
+        queryParams.ordering = 'cutar_id';
+      }
+      const columnSearches: string[] = [];
+      if (data.filters) {
+        Object.values(data.filters).forEach((filterGroup: any[]) => {
+          if (Array.isArray(filterGroup) && filterGroup.length) {
+            filterGroup.forEach(filter => {
+              if (filter?.value) {
+                columnSearches.push(filter.value);
+              }
+            });
+          }
+        });
+      }
+      if (data.globalFilter || columnSearches.length) {
+        const searchTerms: string[] = [];
+        if (data.globalFilter) {
+          searchTerms.push(data.globalFilter);
+        }
+        searchTerms.push(...columnSearches);
+        queryParams.search = this.joinSearchParams(searchTerms);
+        console.log(searchTerms);
+      }
+    }
+
+    this.geneService.getGeneExplorerList(queryParams).subscribe({
+      next: (res: any) => {
+        this.genes = res.list;
+        this.totalRecords = res.totalCount;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.loading = false;
+        console.error('Error loading gene explorer data:', error);
+      }
+    });
+  }
 }
-
-
-
