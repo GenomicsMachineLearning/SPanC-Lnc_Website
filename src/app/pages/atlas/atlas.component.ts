@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {GeneexplorerService} from '../../../service/geneexplorer.service';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
@@ -9,25 +9,36 @@ import {debounceTime} from 'rxjs/operators';
   styleUrls: ['./atlas.component.scss']
 })
 export class AtlasComponent {
-
   public filteredGenes: any = [];
   public filteredGenesOrg: any = [{CUTAR_ID: "cuTAR100897"}, {CUTAR_ID: "cuTAR213507"}, {CUTAR_ID: "cuTAR234975"}]
-  public sampleGenes: any = [{
-    "image": "assets/images/geneExporer/headaneck.jpeg",
-    "name": 'Head and Neck Cancer'
-  }, {
-    "image": "assets/images/geneExporer/Melanoma.png",
-    "name": 'Melanoma'
-  }, {"image": "assets/images/geneExporer/SCC.png", "name": 'SCC'}, {
-    "image": "assets/images/geneExporer/BCC.png",
-    "name": 'BCC'
-  }, {"image": "assets/images/geneExporer/KidneyCancer.png", "name": 'Kidney Cancer'}]
-  // public sampleGenes:any = [{"image":"assets/images/geneExporer/headaneck.jpeg","name":'Head and Neck Cancer'}, {"image":"assets/images/geneExporer/KidneyCancer.png","name":'Kidney cancer'}, {"image":"assets/images/geneExporer/Melanoma.png","name":'Melanoma'},{"image":"assets/images/geneExporer/SCC.png","name":'SCC'},{"image":"assets/images/geneExporer/BCC.png","name":'BCC'}]
+  public sampleGenes: any = [
+    {
+      "image": "assets/images/geneExporer/headaneck.jpeg",
+      "name": 'Head and Neck Cancer'
+    },
+    {
+      "image": "assets/images/geneExporer/Melanoma.png",
+      "name": 'Melanoma'
+    },
+    {
+      "image": "assets/images/geneExporer/SCC.png",
+      "name": 'SCC'
+    },
+    {
+      "image": "assets/images/geneExporer/BCC.png",
+      "name": 'BCC'
+    },
+    {
+      "image": "assets/images/geneExporer/KidneyCancer.png",
+      "name": 'Kidney Cancer'
+    }
+  ];
   public sampleTissueImg: any = [];
   public showSpinner: boolean = false;
   public showGenes: boolean = false;
   public showNotFound: boolean = true
   searchControl = new FormControl();
+
   constructor(private geneService: GeneexplorerService) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
@@ -65,14 +76,6 @@ export class AtlasComponent {
       }
       this.filteredGenes = filtered;
     })
-    // }
-    // else {
-    //   this.geneService.getGeneNameList().subscribe((res:any) => {
-    //     this.filteredGenesOrg =res.list
-    //   })
-    // }
-
-
   }
 
   getGenes() {
@@ -97,7 +100,5 @@ export class AtlasComponent {
         this.showSpinner = false;
       })
     }
-
   }
-
 }
