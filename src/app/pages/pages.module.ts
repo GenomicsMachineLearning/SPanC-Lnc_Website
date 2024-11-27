@@ -21,7 +21,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SpatialongreadComponent} from "./spatialongread/spatialongread.component";
 import {SinglecellComponent} from "./singlecell/singlecell.component";
 
@@ -32,6 +32,7 @@ import {SinglecellComponent} from "./singlecell/singlecell.component";
     MiscellaneousModule,
     AutoCompleteModule,
     ConfirmDialogModule,
+    FormsModule,
     ReactiveFormsModule,
     TableModule,
     ThemeModule,
