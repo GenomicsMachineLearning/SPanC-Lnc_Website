@@ -57,7 +57,6 @@ export class GeneExplorerComponent {
         }
         searchTerms.push(...columnSearches);
         queryParams.search = this.joinSearchParams(searchTerms);
-        console.log(searchTerms);
       }
     }
 
