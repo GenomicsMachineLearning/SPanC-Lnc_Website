@@ -1,6 +1,6 @@
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Component} from '@angular/core';
-import {GeneexplorerService} from '../../../service/geneexplorer.service';
+import {GeneExplorerService} from '../../../service/gene-explorer.service';
 
 @Component({
   selector: 'ngx-gene-explorer',
@@ -18,7 +18,7 @@ export class GeneExplorerComponent {
   statuses!: any[];
 
   constructor(
-    private geneService: GeneexplorerService) {
+    private geneService: GeneExplorerService) {
   }
 
   private joinSearchParams(params: string[]): string {

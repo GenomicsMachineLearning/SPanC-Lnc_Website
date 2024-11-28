@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
-import { GeneexplorerService } from '../../../service/geneexplorer.service';
+import { GeneExplorerService } from '../../../service/gene-explorer.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class SpatialongreadComponent {
   searchControl = new FormControl();
   // public ExampleGenes:any = [{image:"assets/images/geneExporer/scc_visium_exmp.png",name:"SCC:Visium"},
   // {image:"assets/images/geneExporer/bcc_visium_exmp.png",name:"BCC:Visium"},{image:"assets/images/geneExporer/mel_vis_exmp.png",name:"Melanoma:Visium"}]
-  constructor(private geneService: GeneexplorerService ) {
+  constructor(private geneService: GeneExplorerService ) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
       .subscribe(newValue => {
@@ -35,7 +35,7 @@ export class SpatialongreadComponent {
           var data:any = {};
         data.cutarId = newValue?.trim();
           this.showSpinner = true;
-          this.geneService.getsamplesImgSlr(data).subscribe((res:any) => {
+          this.geneService.getSamplesImgSlr(data).subscribe((res:any) => {
             this.sampleTissueImg =  res.data
             this.showSpinner = false;
             this.showGenes = true;
@@ -85,7 +85,7 @@ onSelect(event) {
   data.cutarId = event.target.value;
   this.showSpinner = true;
   if(event?.target?.value && event.target.value !=" " && event.target.value !="") {
-    this.geneService.getsamplesImgSlr(data).subscribe((res:any) => {
+    this.geneService.getSamplesImgSlr(data).subscribe((res:any) => {
       this.sampleTissueImg =  res.data
       this.showSpinner = false;
       this.showGenes = true;

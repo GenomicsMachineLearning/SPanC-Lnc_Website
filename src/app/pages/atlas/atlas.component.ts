@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {GeneexplorerService} from '../../../service/geneexplorer.service';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
+import {GeneExplorerService} from "../../../service/gene-explorer.service";
 
 @Component({
   selector: 'ngx-atlas',
@@ -9,8 +9,6 @@ import {debounceTime} from 'rxjs/operators';
   styleUrls: ['./atlas.component.scss']
 })
 export class AtlasComponent {
-  public filteredGenes: any = [];
-  public filteredGenesOrg: any = [{CUTAR_ID: "cuTAR100897"}, {CUTAR_ID: "cuTAR213507"}, {CUTAR_ID: "cuTAR234975"}]
   public sampleGenes: any = [
     {
       "image": "assets/images/geneExporer/headaneck.jpeg",
@@ -39,7 +37,7 @@ export class AtlasComponent {
   public showNotFound: boolean = true
   searchControl = new FormControl();
 
-  constructor(private geneService: GeneexplorerService) {
+  constructor(private geneService: GeneExplorerService) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
       .subscribe(newValue => {
@@ -48,7 +46,7 @@ export class AtlasComponent {
           var data: any = {};
           data.cutarId = newValue?.trim();
           this.showSpinner = true;
-          this.geneService.getsamplesImg(data).subscribe((res: any) => {
+          this.geneService.getSamplesImg(data).subscribe((res: any) => {
             this.sampleTissueImg = res.data
             this.showSpinner = false;
             this.showGenes = true;
@@ -60,45 +58,5 @@ export class AtlasComponent {
           })
         }
       });
-  }
-
-  filterGeneAtlas(event: any) {
-    let filtered: any[] = [];
-    let query = event.query;
-    // if(query) {
-    this.geneService.getGeneNameList({search: query}).subscribe((res: any) => {
-      this.filteredGenesOrg = res.list;
-      for (let i = 0; i < (this.filteredGenesOrg as any[]).length; i++) {
-        let geneAtlas = (this.filteredGenesOrg as any[])[i];
-        if (geneAtlas?.CUTAR_ID?.toLowerCase().indexOf(query?.toLowerCase()) == 0) {
-          filtered.push(geneAtlas);
-        }
-      }
-      this.filteredGenes = filtered;
-    })
-  }
-
-  getGenes() {
-    this.geneService.getGeneNameList().subscribe((res: any) => {
-      this.filteredGenesOrg = res.list
-    })
-  }
-
-  onSelect(event) {
-    var data: any = {};
-    data.cutarId = event.target.value;
-    this.showSpinner = true;
-    if (event?.target?.value && event.target.value != " " && event.target.value != "") {
-      this.geneService.getsamplesImg(data).subscribe((res: any) => {
-        this.sampleTissueImg = res.data
-        this.showSpinner = false;
-        this.showGenes = true;
-        this.showNotFound = false
-      }, (err) => {
-        this.showNotFound = true;
-        this.showGenes = false;
-        this.showSpinner = false;
-      })
-    }
   }
 }

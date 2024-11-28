@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {GeneexplorerService} from '../../../service/geneexplorer.service';
+import {GeneExplorerService} from '../../../service/gene-explorer.service';
 
 @Component({
   selector: 'ngx-singlecell',
@@ -27,7 +27,7 @@ export class SinglecellComponent {
   public showNotFound: boolean = true
   searchControl = new FormControl();
 
-  constructor(private geneService: GeneexplorerService) {
+  constructor(private geneService: GeneExplorerService) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
       .subscribe(newValue => {
@@ -36,7 +36,7 @@ export class SinglecellComponent {
           var data: any = {};
           data.cutarId = newValue?.trim();
           this.showSpinner = true;
-          this.geneService.getsamplesImgScr(data).subscribe((res: any) => {
+          this.geneService.getSamplesImgScr(data).subscribe((res: any) => {
             this.sampleTissueImg = res.data
             this.showSpinner = false;
             this.showGenes = true;
@@ -79,7 +79,7 @@ export class SinglecellComponent {
     data.cutarId = event.target.value;
     this.showSpinner = true;
     if (event?.target?.value && event.target.value != " " && event.target.value != "") {
-      this.geneService.getsamplesImgScr(data).subscribe((res: any) => {
+      this.geneService.getSamplesImgScr(data).subscribe((res: any) => {
         this.sampleTissueImg = res.data
         this.showSpinner = false;
         this.showGenes = true;

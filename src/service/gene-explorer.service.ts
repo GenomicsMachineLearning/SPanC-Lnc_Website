@@ -5,7 +5,7 @@ import {GlobalService} from './global.service';
 @Injectable({
   providedIn: 'root'
 })
-export class GeneexplorerService {
+export class GeneExplorerService {
   public constructor(
     private api: ApiService,
     private glService: GlobalService
@@ -20,15 +20,15 @@ export class GeneexplorerService {
     return this.api.get(this.glService.getGeneList, body)
   }
 
-  getsamplesImg(body: any) {
+  getSamplesImg(body: any) {
     return this.api.post(this.glService.getGeneImg, body)
   }
 
-  getsamplesImgSlr(body: any) {
+  getSamplesImgSlr(body: any) {
     return this.api.post(this.glService.getGeneImgSlr, body)
   }
 
-  getsamplesImgScr(body: any) {
+  getSamplesImgScr(body: any) {
     return this.api.post(this.glService.getGeneImgScr, body)
   }
 }
