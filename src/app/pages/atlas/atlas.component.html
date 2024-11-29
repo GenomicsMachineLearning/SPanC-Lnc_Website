@@ -31,17 +31,16 @@
             </nb-card-body>
           </nb-card>
         </div>
-        <ng-container *ngIf="showGenes;else nofeaturefound"> 
+        <ng-container *ngIf="showGenes;else nofeaturefound">
 
           <div class="col-12 col-xl-8 col-lg-8 col-md-12 col-sm-12 p-2" [nbSpinner]="this.showSpinner" nbSpinnerStatus="danger">
             <div class="sampleSpecies" *ngIf="this.showGenes">
-              <ng-container *ngFor="let expGenes of sampleTissueImg">
+              <ng-container *ngFor="let expGenes of sampleGenes">
                 <p-fieldset class="atlasImageList" [legend]="expGenes.name">
                   <div class="container-fluid">
                     <div class="col-12 text-center">
-                      <img class="sampleSpeciesImages" [src]="'data:image/png;base64,' + expGenes.plotImage">
+                      <img class="sampleSpeciesImages" [src]="expGenes.result" [alt]="expGenes.name">
                     </div>
-                   
                   </div>
                 </p-fieldset>
               </ng-container>
