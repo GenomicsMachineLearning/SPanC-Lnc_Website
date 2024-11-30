@@ -42,6 +42,12 @@ export class UserHeaderComponent {
         link: '/pages/singlecell',
         home: false,
       },
+      {
+        title: 'UCSC Genome Browser',
+        icon: 'home-outline',
+        link: '/pages/ucscgenomebrowser',
+        home: false,
+      },
     ]
     if (this.router.url === '/pages' || this.router.url === '/pages/') {
       const homeMenuItem = this.UserMenu.find(menu => menu.home === true);

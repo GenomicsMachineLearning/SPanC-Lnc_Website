@@ -7,6 +7,7 @@ import { GeneExplorerComponent } from './gene-explorer/gene-explorer.component';
 import { AtlasComponent } from './atlas/atlas.component';
 import { SpatialongreadComponent } from './spatialongread/spatialongread.component';
 import { SinglecellComponent } from './singlecell/singlecell.component';
+import {UcscgenomebrowserComponent} from "./ucscgenomebrowser/ucscgenomebrowser.component";
 
 
 const routes: Routes = [{
@@ -32,6 +33,10 @@ const routes: Routes = [{
     {
       path: 'singlecell',
       component: SinglecellComponent,
+    },
+    {
+      path: 'ucscgenomebrowser',
+      component: UcscgenomebrowserComponent,
     },
     {
       path: '',

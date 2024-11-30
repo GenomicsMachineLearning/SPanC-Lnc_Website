@@ -24,6 +24,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SpatialongreadComponent} from "./spatialongread/spatialongread.component";
 import {SinglecellComponent} from "./singlecell/singlecell.component";
+import {UcscgenomebrowserComponent} from "./ucscgenomebrowser/ucscgenomebrowser.component";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {SinglecellComponent} from "./singlecell/singlecell.component";
     GeneExplorerComponent,
     AtlasComponent,
     SpatialongreadComponent,
-    SinglecellComponent
+    SinglecellComponent,
+    UcscgenomebrowserComponent,
   ],
   providers: []
 })
