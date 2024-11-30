@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {GeneExplorerService} from "../../../service/gene-explorer.service";
 import {environment} from "../../../environments/environment";
-import { DomSanitizer } from '@angular/platform-browser';
+import {DomSanitizer} from '@angular/platform-browser';
+import {GlobalService} from "../../../service/global.service";
 
 @Component({
   selector: 'ngx-atlas',
@@ -38,28 +38,27 @@ export class AtlasComponent {
       "name": 'Kidney Cancer'
     }
   ];
-  public sampleTissueImg: any = [];
   public showSpinner: boolean = false;
   public showGenes: boolean = false;
   public showNotFound: boolean = true
   searchControl = new FormControl();
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private glService: GlobalService
+  ) {
     this.searchControl.valueChanges
       .pipe(debounceTime(1000)) // Adjust debounce time as per your requirement
       .subscribe(newValue => {
-        // This code will execute after 300ms of user input pause
-        if (newValue) {
-          const cutarId = newValue?.trim();
-          this.updateImageUrls(cutarId)
+          if (newValue) {
+            const cutarId = newValue?.trim();
+            this.updateImageUrls(cutarId)
+          }
+          this.showGenes = true;
         }
-        this.showGenes = true;
-      }
-    );
+      );
   }
 
   constructImageUrl(cutarId: string, sampleName: string): string {
-    return `${environment.apiBaseURL}/genes?cutarId=${cutarId}&sampleName=${encodeURIComponent(sampleName)}`;
+    return `${environment.apiBaseURL}${this.glService.getGeneImg}?cutarId=${cutarId}&sampleName=${encodeURIComponent(sampleName)}`;
   }
 
   updateImageUrls(cutarId: string): void {

@@ -15,20 +15,4 @@ export class GeneExplorerService {
   getGeneExplorerList(params: any) {
     return this.api.get(this.glService.getGeneExplorer, params)
   }
-
-  getGeneNameList(body: any = null) {
-    return this.api.get(this.glService.getGeneList, body)
-  }
-
-  getSamplesImg(body: any) {
-    return this.api.post(this.glService.getGeneImg, body)
-  }
-
-  getSamplesImgSlr(body: any) {
-    return this.api.post(this.glService.getGeneImgSlr, body)
-  }
-
-  getSamplesImgScr(body: any) {
-    return this.api.post(this.glService.getGeneImgScr, body)
-  }
 }

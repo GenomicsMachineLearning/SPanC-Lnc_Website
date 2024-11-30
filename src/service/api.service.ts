@@ -29,10 +29,6 @@ export class ApiService {
     return this.http.post(`${environment.apiBaseURL}${url}`, body)
   }
 
-  delete(url: string, body: any) {
-    return this.http.post(`${environment.apiBaseURL}${url}`, body)
-  }
-
   update(url: string, body: any) {
     return this.http.put(`${environment.apiBaseURL}${url}`, body)
   }
