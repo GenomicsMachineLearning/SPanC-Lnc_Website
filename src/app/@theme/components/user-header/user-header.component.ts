@@ -19,7 +19,13 @@ export class UserHeaderComponent {
         home: true,
       },
       {
-        title: 'Browse',
+        title: 'Genome Browser',
+        icon: 'home-outline',
+        link: '/pages/ucscgenomebrowser',
+        home: false,
+      },
+      {
+        title: 'Table Browser',
         icon: 'home-outline',
         link: '/pages/browse',
         home: false,
@@ -40,12 +46,6 @@ export class UserHeaderComponent {
         title: 'scRNA-seq',
         icon: 'home-outline',
         link: '/pages/singlecell',
-        home: false,
-      },
-      {
-        title: 'UCSC Genome Browser',
-        icon: 'home-outline',
-        link: '/pages/ucscgenomebrowser',
         home: false,
       },
     ]
