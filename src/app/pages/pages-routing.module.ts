@@ -8,6 +8,7 @@ import { AtlasComponent } from './atlas/atlas.component';
 import { SpatialongreadComponent } from './spatialongread/spatialongread.component';
 import { SinglecellComponent } from './singlecell/singlecell.component';
 import {UcscgenomebrowserComponent} from "./ucscgenomebrowser/ucscgenomebrowser.component";
+import {AlphaGenomeComponent} from "./alphagenome/alpha-genome.component";
 
 
 const routes: Routes = [{
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'geneexplorer',
       component: AtlasComponent,
+    },
+    {
+      path: 'alphagenome',
+      component: AlphaGenomeComponent,
     },
     {
       path: 'spatialongread',

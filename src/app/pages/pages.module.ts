@@ -17,6 +17,7 @@ import {MiscellaneousModule} from './miscellaneous/miscellaneous.module';
 import {AboutComponent} from './about/about.component';
 import {GeneExplorerComponent} from './gene-explorer/gene-explorer.component';
 import {AtlasComponent} from './atlas/atlas.component';
+import {AlphaGenomeComponent} from './alphagenome/alpha-genome.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TableModule} from 'primeng/table';
 import {ToastModule} from 'primeng/toast';
@@ -53,6 +54,7 @@ import {UcscgenomebrowserComponent} from "./ucscgenomebrowser/ucscgenomebrowser.
     AboutComponent,
     GeneExplorerComponent,
     AtlasComponent,
+    AlphaGenomeComponent,
     SpatialongreadComponent,
     SinglecellComponent,
     UcscgenomebrowserComponent,

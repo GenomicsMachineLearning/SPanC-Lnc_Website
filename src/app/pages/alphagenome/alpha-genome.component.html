@@ -1,0 +1,102 @@
+<nb-card style="padding: 0 55px !important;">
+  <nb-card-header>Search AlphaGenome</nb-card-header>
+  <nb-card-body class="shadow rounded pt-1">
+    <div class="card pb-4 mb-4" style="font-size: 14px !important;font-family: 'Exo 2';">
+      <p-toast></p-toast>
+
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between row " style="width: 100% !important;">
+          <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+            <h5 class="m-0">Gene Details</h5>
+          </div>
+
+          <!-- Search Input Section -->
+          <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="d-flex align-items-center">
+              <span class="p-input-icon-left flex-grow-1 me-2">
+                <nb-icon style="position: absolute; top: 2px; left: -20px;" icon="search-outline"></nb-icon>
+                <input
+                  style="width:100%"
+                  [(ngModel)]="search"
+                  name="search"
+                  pInputText
+                  type="text"
+                  (keypress)="onKeyPress($event)"
+                  placeholder="Enter gene name or ID..."
+                  [disabled]="isLoading"/>
+              </span>
+
+              <button
+                type="button"
+                pButton
+                pRipple
+                label="Search"
+                icon="pi pi-search"
+                class="p-button-primary me-1"
+                (click)="onSearch()"
+                [loading]="isLoading"
+                [disabled]="!search.trim()">
+              </button>
+
+              <button
+                type="button"
+                pButton
+                pRipple
+                icon="pi pi-times"
+                class="p-button-outlined p-button-secondary"
+                (click)="clearSearch()"
+                [disabled]="isLoading"
+                *ngIf="search || imageUrl">
+              </button>
+            </div>
+          </div>
+
+          <div class="col-12 col-xl-2 col-lg-6 col-md-6 col-sm-12 p-0 text-right">
+          </div>
+        </div>
+      </ng-template>
+
+      <!-- Error Message -->
+      <div class="mt-3" *ngIf="errorMessage">
+        <p-message severity="error" [text]="errorMessage"></p-message>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div class="mt-3 text-center" *ngIf="isLoading">
+        <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+        <p class="mt-2 text-muted">Searching AlphaGenome database...</p>
+      </div>
+
+      <!-- Search Results - Image Display -->
+      <div class="mt-4" *ngIf="imageUrl && !isLoading">
+        <nb-card>
+          <nb-card-header>
+            <h6 class="mb-0">Search Results for: <strong>{{search}}</strong></h6>
+          </nb-card-header>
+          <nb-card-body class="text-center">
+            <img
+              [src]="imageUrl"
+              [alt]="'Gene visualization for ' + search"
+              class="img-fluid rounded shadow"
+              style="max-width: 100%; max-height: 500px;"
+              (error)="errorMessage = 'Failed to load image'"
+              (load)="errorMessage = ''">
+
+            <!-- Additional result info if available -->
+            <div class="mt-3" *ngIf="searchResults">
+              <p class="text-muted small">
+                Gene ID: {{searchResults.geneId || 'N/A'}} |
+                Organism: {{searchResults.organism || 'N/A'}}
+              </p>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+      <!-- No Results Message -->
+      <div class="mt-3 text-center" *ngIf="searchResults && !imageUrl && !isLoading">
+        <p-message severity="warn" text="No image data found for this search term."></p-message>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

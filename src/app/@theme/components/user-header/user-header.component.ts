@@ -31,6 +31,12 @@ export class UserHeaderComponent {
         home: false,
       },
       {
+        title: 'AlphaGenome',
+        icon: 'home-outline',
+        link: '/pages/alphagenome',
+        home: false,
+      },
+      {
         title: 'Visualization',
         icon: 'home-outline',
         link: '/pages/geneexplorer',
