@@ -4,66 +4,66 @@
     <div class="card pb-4 mb-4" style="font-size: 14px !important;font-family: 'Exo 2';">
       <p-toast></p-toast>
 
-      <ng-template pTemplate="caption">
-        <div class="flex align-items-center justify-content-between row " style="width: 100% !important;">
-          <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12">
-            <h5 class="m-0">Gene Details</h5>
-          </div>
+      <div class="flex align-items-center justify-content-between row" style="width: 100% !important;">
+        <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12">
+          <h5 class="m-0">Gene Details</h5>
+        </div>
 
-          <!-- Search Input Section -->
-          <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
-            <div class="d-flex align-items-center">
-              <span class="p-input-icon-left flex-grow-1 me-2">
-                <nb-icon style="position: absolute; top: 2px; left: -20px;" icon="search-outline"></nb-icon>
-                <input
-                  style="width:100%"
-                  [(ngModel)]="search"
-                  name="search"
-                  pInputText
-                  type="text"
-                  (keypress)="onKeyPress($event)"
-                  placeholder="Enter gene name or ID..."
-                  [disabled]="isLoading"/>
-              </span>
-
-              <button
-                type="button"
-                pButton
-                pRipple
-                label="Search"
-                icon="pi pi-search"
-                class="p-button-primary me-1"
-                (click)="onSearch()"
-                [loading]="isLoading"
-                [disabled]="!search.trim()">
-              </button>
-
-              <button
-                type="button"
-                pButton
-                pRipple
-                icon="pi pi-times"
-                class="p-button-outlined p-button-secondary"
-                (click)="clearSearch()"
+        <!-- Search Input Section -->
+        <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+          <div class="d-flex align-items-center">
+            <nb-form-field class="flex-grow-1 me-2">
+              <nb-icon nbPrefix icon="search-outline"></nb-icon>
+              <input
+                nbInput
+                [(ngModel)]="search"
+                name="search"
+                type="text"
+                (keypress)="onKeyPress($event)"
+                placeholder="Enter gene name or ID..."
                 [disabled]="isLoading"
-                *ngIf="search || imageUrl">
-              </button>
-            </div>
-          </div>
+                style="width: 100%;">
+            </nb-form-field>
 
-          <div class="col-12 col-xl-2 col-lg-6 col-md-6 col-sm-12 p-0 text-right">
+            <button
+              nbButton
+              status="primary"
+              size="medium"
+              (click)="onSearch()"
+              [disabled]="!search?.trim() || isLoading"
+              class="me-1">
+              <nb-icon icon="search-outline" *ngIf="!isLoading"></nb-icon>
+              <nb-spinner size="small" *ngIf="isLoading"></nb-spinner>
+              Search
+            </button>
+
+            <button
+              nbButton
+              status="basic"
+              outline
+              size="medium"
+              (click)="clearSearch()"
+              [disabled]="isLoading"
+              *ngIf="search || imageUrl">
+              <nb-icon icon="close-outline"></nb-icon>
+            </button>
           </div>
         </div>
-      </ng-template>
+
+        <div class="col-12 col-xl-2 col-lg-6 col-md-6 col-sm-12 p-0 text-right">
+        </div>
+      </div>
 
       <!-- Error Message -->
       <div class="mt-3" *ngIf="errorMessage">
-        <p-message severity="error" [text]="errorMessage"></p-message>
+        <nb-alert status="danger">
+          <strong>Error:</strong> {{errorMessage}}
+        </nb-alert>
       </div>
 
       <!-- Loading Indicator -->
       <div class="mt-3 text-center" *ngIf="isLoading">
-        <p-progressSpinner strokeWidth="4"></p-progressSpinner>
+        <nb-spinner size="large"></nb-spinner>
         <p class="mt-2 text-muted">Searching AlphaGenome database...</p>
       </div>
 
@@ -82,7 +82,6 @@
               (error)="errorMessage = 'Failed to load image'"
               (load)="errorMessage = ''">
 
-            <!-- Additional result info if available -->
             <div class="mt-3" *ngIf="searchResults">
               <p class="text-muted small">
                 Gene ID: {{searchResults.geneId || 'N/A'}} |
@@ -95,7 +94,9 @@
 
       <!-- No Results Message -->
       <div class="mt-3 text-center" *ngIf="searchResults && !imageUrl && !isLoading">
-        <p-message severity="warn" text="No image data found for this search term."></p-message>
+        <nb-alert status="warning">
+          No image data found for this search term.
+        </nb-alert>
       </div>
     </div>
   </nb-card-body>

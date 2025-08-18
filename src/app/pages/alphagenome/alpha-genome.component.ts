@@ -1,9 +1,11 @@
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Component} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {AlphaGenomeService} from "../../../service/alpha-genome.service";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+
 
 @Component({
-  selector: 'ngx-gene-explorer',
+  selector: 'ngx-alpha-genome',
   templateUrl: './alpha-genome.component.html',
   styleUrls: ['./alpha-genome.component.scss'],
   providers: [MessageService, ConfirmationService]
@@ -12,10 +14,11 @@ export class AlphaGenomeComponent {
   search: string = '';
   isLoading: boolean = false;
   searchResults: any = null;
-  imageUrl: string = '';
+  imageUrl: SafeUrl = '';
   errorMessage: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private sanitizer: DomSanitizer, private alphaGenomeService: AlphaGenomeService) {
+  }
 
   onSearch() {
     if (!this.search.trim()) {
@@ -25,39 +28,58 @@ export class AlphaGenomeComponent {
 
     this.isLoading = true;
     this.errorMessage = '';
-    this.imageUrl = '';
+    this.cleanupImageUrl();
 
-    // Replace with your actual API endpoint
-    const apiUrl = 'YOUR_API_ENDPOINT';
-
-    // Prepare search payload
-    const searchPayload = {
-      query: this.search.trim(),
-      // Add any other required parameters
+    const searchParams = {
+      search: this.search.trim(),
     };
 
-    this.http.post(apiUrl, searchPayload).subscribe({
-      next: (response: any) => {
-        this.searchResults = response;
-
-        // Extract image URL from response
-        // Adjust this based on your API response structure
-        if (response.imageUrl) {
-          this.imageUrl = response.imageUrl;
-        } else if (response.data && response.data.image) {
-          this.imageUrl = response.data.image;
-        } else if (response.image) {
-          this.imageUrl = response.image;
-        }
-
-        this.isLoading = false;
+    this.alphaGenomeService.getAlphaGenome(searchParams).subscribe({
+      next: (blob: Blob) => {
+        this.handleImageBlob(blob);
       },
       error: (error) => {
-        console.error('Search error:', error);
-        this.errorMessage = 'Search failed. Please try again.';
-        this.isLoading = false;
+        this.handleSearchError(error);
       }
     });
+  }
+
+  private handleImageBlob(blob: Blob) {
+    // Create blob URL and sanitize it
+    const blobUrl = URL.createObjectURL(blob);
+    this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl); // Sanitize the URL
+    this.searchResults = { success: true };
+    this.isLoading = false;
+
+    console.log('Image loaded successfully, blob size:', blob.size);
+    console.log('Blob URL created:', blobUrl);
+  }
+
+  private handleSearchError(error: any) {
+    console.error('AlphaGenome search error:', error);
+
+    if (error.status === 404) {
+      this.errorMessage = 'Gene not found in the AlphaGenome database.';
+    } else if (error.status === 500) {
+      this.errorMessage = 'Server error. Please try again later.';
+    } else if (error.status === 0) {
+      this.errorMessage = 'Network error. Please check your connection.';
+    } else {
+      this.errorMessage = `Search failed: ${error.message || 'Please try again.'}`;
+    }
+
+    this.isLoading = false;
+  }
+
+  private cleanupImageUrl() {
+    if (this.imageUrl) {
+      // Extract the original blob URL for cleanup
+      const urlString = this.imageUrl.toString();
+      if (urlString.startsWith('blob:')) {
+        URL.revokeObjectURL(urlString);
+      }
+      this.imageUrl = '';
+    }
   }
 
   onKeyPress(event: KeyboardEvent) {
@@ -68,8 +90,12 @@ export class AlphaGenomeComponent {
 
   clearSearch() {
     this.search = '';
-    this.imageUrl = '';
+    this.cleanupImageUrl(); // Clean up the blob URL
     this.searchResults = null;
     this.errorMessage = '';
+  }
+
+  ngOnDestroy() {
+    this.cleanupImageUrl();
   }
 }

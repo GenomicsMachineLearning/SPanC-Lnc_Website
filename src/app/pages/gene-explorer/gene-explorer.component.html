@@ -11,19 +11,54 @@
                [showCurrentPageReport]="true" [resizableColumns]="true" columnResizeMode="expand"
                styleClass="p-datatable-gridlines">
         <ng-template pTemplate="caption">
-          <div class="flex align-items-center justify-content-between row " style="width: 100% !important;">
+          <!-- Updated search section to match AlphaGenome styling -->
+          <div class="flex align-items-center justify-content-between row" style="width: 100% !important;">
             <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12">
               <h5 class="m-0">Gene Details</h5>
             </div>
-            <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12 text-right">
-              <span class="p-input-icon-left" style="width:100%">
-                <nb-icon style="position: absolute; top: 2px; left: -20px;" icon="search-outline"></nb-icon>
-                <input style="width:100%" [(ngModel)]="search" name="search" pInputText type="text"
-                       (input)="dt.filterGlobal($event.target.value, 'contains')"
-                       placeholder="Search..."/>
-              </span>
+
+            <!-- Updated Search Input Section - Nebular styling -->
+            <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+              <div class="d-flex align-items-center">
+              <nb-form-field class="flex-grow-1 me-2">
+                <nb-icon nbPrefix icon="search-outline"></nb-icon>
+                <input
+                  nbInput
+                  [(ngModel)]="search"
+                  name="search"
+                  type="text"
+                  (keypress)="onKeyPress($event)"
+                  placeholder="Enter gene name or ID..."
+                  [disabled]="isLoading"
+                  style="width: 100%;">
+              </nb-form-field>
+
+                <button
+                  nbButton
+                  status="primary"
+                  size="medium"
+                  (click)="onSearch()"
+                  [disabled]="!search?.trim() || isLoading"
+                  class="me-1">
+                  <nb-icon icon="search-outline" *ngIf="!isLoading"></nb-icon>
+                  <nb-spinner size="small" *ngIf="isLoading"></nb-spinner>
+                  Search
+                </button>
+
+                <button
+                  nbButton
+                  status="basic"
+                  outline
+                  size="medium"
+                  (click)="clearSearch(dt)"
+                  *ngIf="search">
+                  <nb-icon icon="close-outline"></nb-icon>
+                </button>
+              </div>
             </div>
-            <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12 p-0 text-right">
+
+            <div class="col-12 col-xl-2 col-lg-6 col-md-6 col-sm-12 p-0 text-right">
+              <!-- Space for additional controls if needed -->
             </div>
           </div>
         </ng-template>

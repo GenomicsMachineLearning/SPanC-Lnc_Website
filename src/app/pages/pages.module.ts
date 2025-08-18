@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {
+  NbAlertModule,
   NbButtonGroupModule,
   NbButtonModule,
   NbCardModule,
   NbFormFieldModule,
   NbIconModule,
+  NbInputModule,
   NbLayoutModule,
   NbListModule,
   NbMenuModule,
@@ -26,6 +28,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SpatialongreadComponent} from "./spatialongread/spatialongread.component";
 import {SinglecellComponent} from "./singlecell/singlecell.component";
 import {UcscgenomebrowserComponent} from "./ucscgenomebrowser/ucscgenomebrowser.component";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -35,15 +38,18 @@ import {UcscgenomebrowserComponent} from "./ucscgenomebrowser/ucscgenomebrowser.
     AutoCompleteModule,
     ConfirmDialogModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     TableModule,
     ThemeModule,
     ToastModule,
+    NbAlertModule,
     NbButtonModule,
     NbButtonGroupModule,
     NbCardModule,
     NbFormFieldModule,
     NbIconModule,
+    NbInputModule,
     NbLayoutModule,
     NbListModule,
     NbMenuModule,

@@ -13,4 +13,5 @@ export class GlobalService {
   public getGeneImg:string='/genes'
   public getGeneImgSlr:string = '/genesSlr'
   public getGeneImgScr:string = '/genesScr'
+  public getAlphaGenome:string = '/alphaGenome'
 }

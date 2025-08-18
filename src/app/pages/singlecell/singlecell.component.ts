@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {GeneExplorerService} from '../../../service/gene-explorer.service';
 import {DomSanitizer} from "@angular/platform-browser";
 import {environment} from "../../../environments/environment";
 import {GlobalService} from "../../../service/global.service";
