@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse, HttpUrlEncodingCodec} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {CustomHttpParamEncoder} from "./CustomHttpCodec";
-import {Observable, throwError} from "rxjs";
+import {Observable } from "rxjs";
 import {catchError, switchMap} from "rxjs/operators";
 
 @Injectable({
