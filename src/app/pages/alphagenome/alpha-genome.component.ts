@@ -12,6 +12,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 })
 export class AlphaGenomeComponent {
   search: string = '';
+  currentSearchTerm: string = '';
   isLoading: boolean = false;
   searchResults: any = null;
   imageUrl: SafeUrl = '';
@@ -37,6 +38,7 @@ export class AlphaGenomeComponent {
     this.alphaGenomeService.getAlphaGenome(searchParams).subscribe({
       next: (blob: Blob) => {
         this.handleImageBlob(blob);
+        this.currentSearchTerm = this.search.trim();
       },
       error: (error) => {
         this.handleSearchError(error);
@@ -48,16 +50,16 @@ export class AlphaGenomeComponent {
     // Create blob URL and sanitize it
     const blobUrl = URL.createObjectURL(blob);
     this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(blobUrl); // Sanitize the URL
-    this.searchResults = { success: true };
     this.isLoading = false;
-
-    console.log('Image loaded successfully, blob size:', blob.size);
-    console.log('Blob URL created:', blobUrl);
   }
 
   private handleSearchError(error: any) {
-    console.error('AlphaGenome search error:', error);
+    this.isLoading = false;
 
+    if (error.error && error.error.error) {
+      this.errorMessage = `Search failed: ${error.error.error}`;
+      return;
+    }
     if (error.status === 404) {
       this.errorMessage = 'Gene not found in the AlphaGenome database.';
     } else if (error.status === 500) {
@@ -67,8 +69,6 @@ export class AlphaGenomeComponent {
     } else {
       this.errorMessage = `Search failed: ${error.message || 'Please try again.'}`;
     }
-
-    this.isLoading = false;
   }
 
   private cleanupImageUrl() {
@@ -90,6 +90,7 @@ export class AlphaGenomeComponent {
 
   clearSearch() {
     this.search = '';
+    this.currentSearchTerm = '';
     this.cleanupImageUrl(); // Clean up the blob URL
     this.searchResults = null;
     this.errorMessage = '';

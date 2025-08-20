@@ -13,6 +13,6 @@ export class AlphaGenomeService {
   }
 
   getAlphaGenome(params: any) {
-    return this.api.getBlob(this.glService.getAlphaGenome, params)
+    return this.api.getBlobOrJson(this.glService.getAlphaGenome, params)
   }
 }

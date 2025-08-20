@@ -8,11 +8,10 @@
         <div class="col-12 col-xl-4 col-lg-6 col-md-6 col-sm-12">
           <h5 class="m-0">Gene Details</h5>
         </div>
-
         <!-- Search Input Section -->
         <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
           <div class="d-flex align-items-center">
-            <nb-form-field class="flex-grow-1 me-2">
+            <nb-form-field class="flex-grow-1 me-2" [class.muted]="isLoading">
               <nb-icon nbPrefix icon="search-outline"></nb-icon>
               <input
                 nbInput
@@ -33,7 +32,6 @@
               [disabled]="!search?.trim() || isLoading"
               class="me-1">
               <nb-icon icon="search-outline" *ngIf="!isLoading"></nb-icon>
-              <nb-spinner size="small" *ngIf="isLoading"></nb-spinner>
               Search
             </button>
 
@@ -64,14 +62,13 @@
       <!-- Loading Indicator -->
       <div class="mt-3 text-center" *ngIf="isLoading">
         <nb-spinner size="large"></nb-spinner>
-        <p class="mt-2 text-muted">Searching AlphaGenome database...</p>
       </div>
 
       <!-- Search Results - Image Display -->
-      <div class="mt-4" *ngIf="imageUrl && !isLoading">
+      <div class="mt-4" *ngIf="(searchResults || imageUrl) && !isLoading">
         <nb-card>
           <nb-card-header>
-            <h6 class="mb-0">Search Results for: <strong>{{search}}</strong></h6>
+            <h6 class="mb-0">Search Results for: <strong>{{currentSearchTerm}}</strong></h6>
           </nb-card-header>
           <nb-card-body class="text-center">
             <img
@@ -81,21 +78,14 @@
               style="max-width: 100%; max-height: 500px;"
               (error)="errorMessage = 'Failed to load image'"
               (load)="errorMessage = ''">
-
-            <div class="mt-3" *ngIf="searchResults">
-              <p class="text-muted small">
-                Gene ID: {{searchResults.geneId || 'N/A'}} |
-                Organism: {{searchResults.organism || 'N/A'}}
-              </p>
-            </div>
           </nb-card-body>
         </nb-card>
       </div>
 
       <!-- No Results Message -->
-      <div class="mt-3 text-center" *ngIf="searchResults && !imageUrl && !isLoading">
+      <div class="mt-3 text-center" *ngIf="searchResults && !imageUrl && !isLoading && currentSearchTerm">
         <nb-alert status="warning">
-          No image data found for this search term.
+          No image data found for "{{currentSearchTerm}}".
         </nb-alert>
       </div>
     </div>
