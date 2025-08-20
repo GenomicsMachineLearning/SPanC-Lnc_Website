@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse, HttpUrlEncodingCodec} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import {CustomHttpParamEncoder} from "./CustomHttpCodec";
-import {Observable } from "rxjs";
+import {Observable} from "rxjs";
 import {catchError, switchMap} from "rxjs/operators";
 
 @Injectable({
@@ -49,8 +49,13 @@ export class ApiService {
   getBlobOrJson(url: string, body: any): Observable<Blob> {
     const params = this.buildParams(body);
 
+    const headers = new HttpHeaders({
+      'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+    });
+
     return this.http.get(environment.apiBaseURL + '' + url, {
       params,
+      headers,
       observe: 'response',
       responseType: 'blob'
     }).pipe(
@@ -100,14 +105,14 @@ export class ApiService {
           } catch (e) {
             observer.error({
               status: error.status,
-              error: { error: 'Unknown error occurred' }
+              error: {error: 'Unknown error occurred'}
             });
           }
         };
         reader.onerror = () => {
           observer.error({
             status: error.status,
-            error: { error: 'Failed to read error response' }
+            error: {error: 'Failed to read error response'}
           });
         };
         reader.readAsText(error.error);
@@ -115,7 +120,7 @@ export class ApiService {
         // Fallback for non-blob errors (network issues, etc.)
         observer.error({
           status: error.status,
-          error: { error: error.message || 'Network error occurred' }
+          error: {error: error.message || 'Network error occurred'}
         });
       }
     });
